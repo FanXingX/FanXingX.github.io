@@ -9,9 +9,27 @@
 ]]></content>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/05/05/text/</url>
-    <content><![CDATA[]]></content>
+    <title>JS乱码问题</title>
+    <url>/2022/03/02/NaNNaNNaNNaN-Batman%20JS%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="JS乱码问题"><a href="#JS乱码问题" class="headerlink" title="JS乱码问题"></a>JS乱码问题</h3><p><img src="/2022/03/02/NaNNaNNaNNaN-Batman%20JS%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/image-20220302143813041.png" alt="image-20220302143813041"></p>
+<p>打开一个附件<br> <a href="......%5CFX%5CFanXIngX%5C646ecdf05af7490a85bb5c8ccb96c102(1).zip">646ecdf05af7490a85bb5c8ccb96c102(1).zip</a> </p>
+<p><img src="/2022/03/02/NaNNaNNaNNaN-Batman%20JS%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/image-20220302143905163.png" alt="image-20220302143905163"></p>
+<p>用TXT文档打开后发现乱码。<br>script 看得出是js脚本<br>添加后缀名：.html</p>
+<p>用浏览器打开</p>
+<hr>
+<p>分析代码：</p>
+<p><img src="/2022/03/02/NaNNaNNaNNaN-Batman%20JS%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/image-20220302144157222.png" alt="image-20220302144157222"></p>
+<p><strong>利用console.log( ) 在浏览器中调试代码 显现出正确代码（核心）</strong></p>
+<p>将eval(<em>) 改为console.log(</em>) 然后 吧script指示删除。</p>
+<p>打开浏览器控制台。</p>
+<hr>
+<p><img src="/2022/03/02/NaNNaNNaNNaN-Batman%20JS%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/image-20220302144543359.png" alt="image-20220302144543359"></p>
+<p>看见正确的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">$</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> e=<span class="built_in">document</span>.getElementById(<span class="string">&quot;c&quot;</span>).value;<span class="comment">//获取c中ID的值，也就是按钮的值</span></span><br><span class="line">    <span class="keyword">if</span>(e.length==<span class="number">16</span>) <span class="comment">//对e输入的字符串长度需要为16</span></span><br><span class="line">        <span class="keyword">if</span>(e.match(<span class="regexp">/^be0f23/</span>)!=<span class="literal">null</span>)<span class="comment">//打开正则表达式表格。匹配开头为be0f23</span></span><br><span class="line">            <span class="keyword">if</span>(e.match(<span class="regexp">/233ac/</span>)!=<span class="literal">null</span>)<span class="comment">//匹配233ac</span></span><br><span class="line">                <span class="keyword">if</span>(e.match(<span class="regexp">/e98aa$/</span>)!=<span class="literal">null</span>)<span class="comment">//匹配e98aa结束</span></span><br><span class="line">                    <span class="keyword">if</span>(e.match(<span class="regexp">/c7be9/</span>)!=<span class="literal">null</span>)<span class="comment">//匹配c7be9 如果输入的e满足这五个if，就能返回flag</span></span><br><span class="line">                                            <span class="comment">//根据首位确定凑出e的值 be0f233ac7be98aa</span></span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">var</span> t=[<span class="string">&quot;fl&quot;</span>,<span class="string">&quot;s_a&quot;</span>,<span class="string">&quot;i&quot;</span>,<span class="string">&quot;e&#125;&quot;</span>];</span><br><span class="line">                            <span class="keyword">var</span> n=[<span class="string">&quot;a&quot;</span>,<span class="string">&quot;_h0l&quot;</span>,<span class="string">&quot;n&quot;</span>];</span><br><span class="line">                            <span class="keyword">var</span> r=[<span class="string">&quot;g&#123;&quot;</span>,<span class="string">&quot;e&quot;</span>,<span class="string">&quot;_0&quot;</span>];</span><br><span class="line">                            <span class="keyword">var</span> i=[<span class="string">&quot;it&#x27;&quot;</span>,<span class="string">&quot;_&quot;</span>,<span class="string">&quot;n&quot;</span>];</span><br><span class="line">                            <span class="keyword">var</span> s=[t,n,r,i];</span><br><span class="line">                            <span class="keyword">for</span>(<span class="keyword">var</span> o=<span class="number">0</span>;o&lt;<span class="number">13</span>;++o)</span><br><span class="line">                            &#123;</span><br><span class="line">                                <span class="built_in">document</span>.write(s[o%<span class="number">4</span>][<span class="number">0</span>]);</span><br><span class="line">                                s[o%<span class="number">4</span>].splice(<span class="number">0</span>,<span class="number">1</span>) <span class="comment">//返回flag</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">&#x27;&lt;input id=&quot;c&quot;&gt;&lt;buttononclick=$()&gt;Ok&lt;/button&gt;&#x27;</span>);<span class="keyword">delete</span> _</span><br></pre></td></tr></table></figure>
+
+<p>稍微整理一下</p>
+<p>分析代码即可获得答案.</p>
+]]></content>
   </entry>
   <entry>
     <title>CE的工作原理 笔记</title>
