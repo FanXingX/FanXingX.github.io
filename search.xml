@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>想了那么多,不是很想打比赛了</title>
+    <url>/2022/06/07/gosumemory%20-%20%E5%89%AF%E6%9C%AC/</url>
+    <content><![CDATA[<p> 大学快过去一年的时间了,自己的理解和感悟仍然是那么的菜<br>想更上一层楼寻找保研的途径,但没有任何办法<br>“放 弃” 止 损<br>做好当下吧</p>
+<!--- more -->
+
+]]></content>
+  </entry>
+  <entry>
+    <title>gosumemory（直播端PP显示器）的简易使用</title>
+    <url>/2022/01/14/gosumemory/</url>
+    <content><![CDATA[<p><a href="https://www.bilibili.com/video/BV1DU4y1775d">视频说明</a>：<br><a href="https://github.com/l3lackShark/gosumemory/releases">链接下载</a><br>点击项目链接，下载</p>
+<!--- more -->
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/05/05/text/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>CE的工作原理 笔记</title>
+    <url>/2022/02/17/CE/</url>
+    <content><![CDATA[<h2 id="第一部分：基础知识-计算机是如何运行游戏的"><a href="#第一部分：基础知识-计算机是如何运行游戏的" class="headerlink" title="第一部分：基础知识-计算机是如何运行游戏的"></a>第一部分：基础知识-计算机是如何运行游戏的</h2><p>总结:</p>
+<p><img src="/2022/02/17/CE/image-20220217155807949.png" alt="image-20220217155807949"></p>
+<h2 id="第二部分：基础知识-CE的工作原理"><a href="#第二部分：基础知识-CE的工作原理" class="headerlink" title="第二部分：基础知识-CE的工作原理"></a>第二部分：基础知识-CE的工作原理</h2><p>CE监控游戏的内存，并对其进行任意的修改。<img src="/2022/02/17/CE/image-20220217160325859.png" alt="image-20220217160325859"></p>
+<p><img src="/2022/02/17/CE/image-20220217160630264.png" alt="image-20220217160630264"></p>
+<p>修改的一般思路：去哪里 干什么</p>
+<h2 id="第三部分：基础知识-二进制的表示"><a href="#第三部分：基础知识-二进制的表示" class="headerlink" title="第三部分：基础知识-二进制的表示"></a>第三部分：基础知识-二进制的表示</h2><p>十六进制数表示二进制数</p>
+<p>0-F对应 1-15；</p>
+<h2 id="第四部分数据：修改-基本操作"><a href="#第四部分数据：修改-基本操作" class="headerlink" title="第四部分数据：修改-基本操作"></a>第四部分数据：修改-基本操作</h2><p><img src="/2022/02/17/CE/image-20220217161151056.png" alt="image-20220217161151056"></p>
+<h2 id="第五部分"><a href="#第五部分" class="headerlink" title="第五部分"></a>第五部分</h2>]]></content>
+  </entry>
+  <entry>
     <title>unserialize3 wp</title>
     <url>/2022/01/16/unserialize3/</url>
     <content><![CDATA[<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">xctf</span></span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$flag</span> = <span class="string">&#x27;111&#x27;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">exit</span>(<span class="string">&#x27;bad requests&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">?code=</span><br></pre></td></tr></table></figure>
