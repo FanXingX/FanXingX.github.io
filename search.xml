@@ -118,6 +118,1330 @@ p_i = \frac{i}{(M\times N)} \space,\space i为出现的个数</script><p>共生�
 ]]></content>
   </entry>
   <entry>
+    <title>数据的表示和运算的思维导图</title>
+    <url>/2024/08/10/Study/408-p3/</url>
+    <content><![CDATA[<h1 id="数据的表示和运算"><a href="#数据的表示和运算" class="headerlink" title="数据的表示和运算"></a>数据的表示和运算</h1><h2 id="常⻅考法"><a href="#常⻅考法" class="headerlink" title="常⻅考法"></a>常⻅考法</h2><pre class="mermaid"> graph LR
+            A[常⻅考法] --> B(C语⾔程序
+分析“数据的表示和运算”)
+            A --> C(结合机器级代码分析“数据的表示和运算”
+（通常也会给出对应的C语⾔程序）)
+
+            B --> D(【2020】43题)
+            B --> E(【2017】43题)
+            B --> ED(【2011】43题)
+            C --> F(【2021】43题)
+            C --> W(【2019】45题)
+            C --> G(【2017】44题)
+            C --> L(【2014】44题)
+            C --> S(【2013】44题)</pre>
+
+
+
+
+
+
+
+
+
+<h2 id="大题重点关注"><a href="#大题重点关注" class="headerlink" title="大题重点关注"></a>大题重点关注</h2><h3 id="数据的表示"><a href="#数据的表示" class="headerlink" title="数据的表示"></a>数据的表示</h3><ul>
+<li>无符号整数<ul>
+<li><code>unsigned short</code></li>
+<li><code>unsigned int</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>带符号</p>
+<ul>
+<li><code>short</code></li>
+<li><code>int</code></li>
+</ul>
+<blockquote>
+<p><strong>C语言常见整数类型</strong></p>
+<ol>
+<li>记住<ul>
+<li>$2 ^ {16} = 65535$ </li>
+<li>$2 ^ {15} = 32768$ </li>
+</ul>
+</li>
+<li>带符号 <code>short</code> <ul>
+<li>$-32768 \space \textasciitilde \space 32767$</li>
+</ul>
+</li>
+<li>无符号 <code>unsigned short</code> <ul>
+<li>$0\space \textasciitilde \space 65535$</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p><code>IEEE754</code>浮点数 </p>
+<ul>
+<li>结构: 符号位 + 阶码 + 尾数<ul>
+<li>[x] <code>float</code>: $1 + 8 + 23$</li>
+<li>[ ] <code>double</code>: $1 + 11 + 52$</li>
+<li>[ ] <code>long double</code>:  $1 + 15  + 64 $</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>C语言数据类型转换</p>
+<ul>
+<li><p>整数之间的转换</p>
+<ul>
+<li>[ ] 长度相同<ul>
+<li>机器数不变,解释方式改变(带符号整数,无符号整数)</li>
+</ul>
+</li>
+<li>[ ] 短变长<ul>
+<li>先扩展（⽆符号整数零扩展、带符号整数符号扩展），再解释</li>
+</ul>
+</li>
+<li>[ ] 长变短<ul>
+<li>先截断（留低位），再解释</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>整数和浮点数之间的转换</p>
+<ul>
+<li><p>[ ] 整数转浮点数</p>
+<ul>
+<li><p>写出⼈类视⻆的科学计数法 <code>1.xxxx</code>，再转为浮点数，截断尾部时采⽤ <code>0</code> 舍 <code>1</code> ⼊原则</p>
+</li>
+<li><p>[x] 注意：精度丢失问题</p>
+</li>
+</ul>
+</li>
+<li><p>[ ] 浮点数转整数</p>
+<ul>
+<li><p>写出⼆进制⼩数，去掉⼩数部分，整数部分保留</p>
+<p>更低的位数</p>
+</li>
+<li><p>[x] 注意：溢出问题、精度丢失（⼩数点后的部分）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="数据的运算"><a href="#数据的运算" class="headerlink" title="数据的运算"></a>数据的运算</h3><ul>
+<li><strong>加减法</strong><ul>
+<li>⽆符号整数<ul>
+<li>[ ] 加法规则<ul>
+<li>机算 —- 按位相加</li>
+<li>⼿算 —- 带⼊十进制计算</li>
+</ul>
+</li>
+<li>[ ] 减法规则<ul>
+<li>机算 —- 减数按位取反末位加1，减法变加法</li>
+<li>⼿算 —- 带⼊十进制计算</li>
+</ul>
+</li>
+<li>[x] 溢出问题<ul>
+<li>机算 —- <strong>:red_circle: 根据CF标志位判断，<code>CF</code>= <code>最⾼位产⽣的进位</code> 异或<code>sub</code></strong></li>
+<li>⼿算 —- 判断加减法的结果是否超出⽆符号数合法范围</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>带符号整数<ul>
+<li>[ ] 加法规则<ul>
+<li>机算 —- 按位相加</li>
+<li>⼿算 —- 带⼊十进制计算</li>
+</ul>
+</li>
+<li>[ ] 减法规则<ul>
+<li>机算 —- 减数按位取反末位加1，减法变加法</li>
+<li>⼿算 —- 带⼊十进制计算</li>
+</ul>
+</li>
+<li>[x] 溢出问题<ul>
+<li>机算 —- :red_circle:<strong>根据<code>OF</code>标志位判断，<code>OF</code> = <code>最⾼位产⽣的进位</code> 异或 <code>次⾼位产⽣的进位</code></strong></li>
+<li>⼿算 —- 判断加减法的结果是否超出带符号数合法范围</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IEEE754浮点数<ul>
+<li>⼩题考察居多（可通过王道书课后⼩题复习）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>乘法</strong></p>
+<ul>
+<li><p>无符号整数</p>
+<ul>
+<li><p>机算</p>
+<ul>
+<li><p>:flags:注意: 可用逻辑左移<code>&lt;&lt;</code>替代 <code>*2</code></p>
+</li>
+<li><p>:red_circle:溢出判断? </p>
+<ul>
+<li><p><code>n</code>位乘<code>n</code>位 若用<code>2n</code>位保存乘积,则不会溢出</p>
+</li>
+<li><p>n 位乘 <code>n</code> 位，⽤ <code>2n</code>位保存中间结果<br>最后截取末尾 <code>n</code> 位作为最终的乘积，可能会溢出</p>
+<blockquote>
+<ol>
+<li>⼿算判溢出<ul>
+<li>带⼊⼗进制计算乘法结果，判断该结果是否超出了 <code>n</code> 位“⽆符号数”所能表示的范围<br>若超出，则溢出</li>
+</ul>
+</li>
+<li>机器判溢出<ul>
+<li>两个⽆符号数乘法：<code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code> 位保存中间结果。<br>仅当前<code>n</code>位都是<code>0</code>时，不溢出</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>带符号整数</p>
+<ul>
+<li><p>机算</p>
+<ul>
+<li><p>:flags:注意: 可用逻辑左移<code>&lt;&lt;</code>替代 <code>*2</code></p>
+</li>
+<li><p>:red_circle:溢出判断? </p>
+<ul>
+<li><p><code>n</code>位乘<code>n</code>位 若用<code>2n</code>位保存乘积,则不会溢出</p>
+</li>
+<li><p><code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code>位保存中间结果<br>最后截取末尾 <code>n</code> 位作为最终的乘积，可能会溢出</p>
+<blockquote>
+<ol>
+<li>⼿算判溢出<ul>
+<li>带⼊⼗进制计算乘法结果，判断该结果是否超出了 <code>n</code> 位“⽆符号数”所能表示的范围<br>若超出，则溢出</li>
+</ul>
+</li>
+<li>机器判溢出<ul>
+<li>两个有符号补码乘法：<code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code> 位保存中间结果。<pre><code>    仅当前 `n+1` 位全`1`或全`0`时，不溢出
+</code></pre></li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>除法</strong></p>
+<ul>
+<li>⽆符号整数 <ul>
+<li>机算 <ul>
+<li>:flags:注意: 可用逻辑右移<code>&gt;&gt;</code>替代 <code>÷2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>⽆符号整数 <ul>
+<li>机算<ul>
+<li>:flags:注意: 可用逻辑右移<code>&gt;&gt;</code>替代 <code>÷2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="常见的难点"><a href="#常见的难点" class="headerlink" title="常见的难点"></a>常见的难点</h2><ol>
+<li>无符号数的加法, 减法怎么算?<ul>
+<li>在硬件看来，对⽆符号数的加减法、对有符号补码的加减法都是⼀样的计算⽅法</li>
+<li>加法：直接 <code>N bit</code>⼆进制按位相加</li>
+<li>减法：计算 “<code>A - B</code>”，可转化为等价的加法——将 <code>B</code> 的 <code>N bit</code> 全部按位取反末位<code>+1</code>，然后与<code>A</code>相加</li>
+</ul>
+</li>
+<li>遇到乘法怎么算?<ul>
+<li>通常可带⼊⼗进制⼿算</li>
+<li>408⼤纲不要求掌握浮点数乘法</li>
+</ul>
+</li>
+<li>遇到除法怎么算?<ul>
+<li>通常可带⼊⼗进制⼿算</li>
+<li>408⼤纲不要求掌握浮点数除法</li>
+</ul>
+</li>
+<li><p>溢出怎么判断?</p>
+<ul>
+<li><p>加法/减法</p>
+<ul>
+<li>手算判溢出<ul>
+<li>带⼊⼗进制计算结果，判断该结果是否超出了 <code>n位</code>所能表示的范围，若超出，则溢出</li>
+</ul>
+</li>
+<li><p>机器判溢出</p>
+<ul>
+<li>⽆符号数加/减：运算后若 <code>CF=1</code>，则溢出；若<code>CF=0</code>，则不溢出</li>
+<li>有符号数补码加/减：运算后若 <code>OF=1</code>，则溢出；若<code>OF=0</code>，则不溢出</li>
+</ul>
+</li>
+<li><p>乘法</p>
+<ul>
+<li><p><code>n</code>位乘<code>n</code>位 若用<code>2n</code>位保存乘积,则不会溢出</p>
+</li>
+<li><p><code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code>位保存中间结果<br>最后截取末尾 <code>n</code> 位作为最终的乘积，可能会溢出</p>
+<blockquote>
+<ol>
+<li>⼿算判溢出<ul>
+<li>带⼊⼗进制计算乘法结果，判断该结果是否超出了 <code>n</code> 位“⽆符号数”所能表示的范围<br>若超出，则溢出</li>
+</ul>
+</li>
+<li><p>机器判溢出</p>
+<ul>
+<li>两个⽆符号数乘法：<code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code> 位保存中间结果。<br>仅当前<code>n</code>位都是<code>0</code>时，不溢出</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<pre><code> - 两个有符号补码乘法：`n` 位乘 `n` 位，⽤ `2n` 位保存中间结果。
+     仅当前 `n+1` 位全`1`或全`0`时，不溢出
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 除法
+  - 可能溢出，但是，整数的除法不可能溢出，只有⼩数的除法可能溢出
+    ⽽408不要求掌握浮点数除法，因此不需太关注除法的溢出问题
+</code></pre><ol>
+<li><p>精度丢失怎么判断</p>
+<ul>
+<li><p>浮点数的精度：看尾数的位数</p>
+<ol>
+<li><p>单精度浮点型 <code>float</code>：尾数位数为 <code>23</code>+<code>1 bit</code>。因此</p>
+<p>数值部分可以表示 <code>24bit</code>的精度</p>
+</li>
+<li><p>双精度浮点型 <code>double</code>：尾数位数为 <code>52</code>+<code>1 bit</code>。</p>
+<p>因此数值部分可表示 <code>53bit</code>的精度</p>
+</li>
+<li><p>临时浮点数<code>long double</code>：尾数位数为 <code>64</code>+<code>1</code></p>
+<p>bit。因此数值部分可表示 <code>65bit</code>的精度</p>
+</li>
+<li><p>注：<code>IEEE 754</code>标准中，尾数是规格化的，隐含了⼀个最⾼位的 <code>1</code></p>
+</li>
+</ol>
+</li>
+<li><p>定点整数的精度：看数值位的位数</p>
+<ol>
+<li><p>16位<code>short</code>型：数值部分的精度为<code>15 bit</code></p>
+</li>
+<li><p>32位<code>int</code>型：数值部分的精度为 <code>31 bit</code></p>
+</li>
+<li><p>32位<code>unsigned int</code> 型：数值部分的精度为 <code>32 bit</code></p>
+</li>
+<li><p>64位<code>long</code>型：数值部分的精度为<code>63 bit</code></p>
+<blockquote>
+<ul>
+<li><p><strong>整数转浮点数：数值部分精度更⾼的类型，转为数值部分精度更低的类型，就有可能发⽣精度丢失</strong></p>
+</li>
+<li><p><strong>浮点数转整数：如果有浮点数有⼩数部分，则可能丢失精度</strong></p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><code>CF</code>、<code>ZF</code>、<code>OF</code>、<code>SF</code> 傻傻分不清楚？</p>
+<blockquote>
+<ul>
+<li><p><code>CF</code></p>
+<ul>
+<li><p>含义：进位/借位标志，表示⽆符号数的加减法是否发⽣了进位或借位。</p>
+<p>当<code>CF=1</code>时，说明⽆符号数的加减运算发⽣了进位或借位，也即发⽣了溢出</p>
+</li>
+<li><p>硬件的计算⽅法：<code>CF</code> =<code>最⾼位产⽣的进位</code>⊕<code>sub</code></p>
+<ul>
+<li><code>sub = 1</code>表示减法</li>
+<li><code>sub = 0</code>表示加分</li>
+</ul>
+</li>
+<li><p>注意:  <code>CF</code>位对有符号数的加减法无意义</p>
+</li>
+</ul>
+</li>
+<li><p><code>ZF</code></p>
+<ul>
+<li>含义: 表示运算结果是否为0 <code>ZF=1</code>表示运算结果为<code>0</code>，<code>ZF=0</code>表示运算结果⾮<code>0</code></li>
+<li>硬件的计算⽅法：两个数的运算结果为<code>n bit</code>，只有<code>n bit</code>全为<code>0</code>时，<code>ZF =1</code></li>
+</ul>
+</li>
+<li><p><code>OF</code></p>
+<ul>
+<li>含义：有符号数的加减运算是否发⽣了溢出。<code>OF=1</code>时，说明发⽣了溢出</li>
+<li>硬件的计算⽅法：<code>OF</code>=<code>最⾼位产⽣的进位</code>⊕ <code>次⾼位产⽣的进位</code></li>
+<li>注意：<code>OF</code>位对⽆符号数的加减法⽆意义</li>
+</ul>
+</li>
+<li><p><code>SF</code></p>
+<ul>
+<li>含义：有符号数加减运算结果的正负性，<code>SF=0</code>表示运算结果为正数，<code>SF=1</code>表示运算结果为负数</li>
+<li>硬件的计算⽅法：<code>SF =</code> 最⾼位的本位和</li>
+<li>注意：<code>SF</code>位对⽆符号数的加减法⽆意义</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h2 id="大纲要求"><a href="#大纲要求" class="headerlink" title="大纲要求"></a>大纲要求</h2><ul>
+<li><p>（⼀）数制与编码</p>
+<ol>
+<li><p><strong>进位计数制及其相互转换</strong></p>
+<ul>
+<li>二进制</li>
+<li>八进制</li>
+<li>十进制</li>
+<li>十六进制</li>
+</ul>
+<blockquote>
+<ul>
+<li>相互转换<ul>
+<li>⼆、⼋、⼗六 之间的转换很简单</li>
+<li>⼆转⼗  <ul>
+<li>根据每位权值展开即可</li>
+</ul>
+</li>
+<li>⼗转⼆<ul>
+<li>好拼凑的<ul>
+<li>拼凑法（熟悉每个⼆进制位的权重）</li>
+</ul>
+</li>
+<li>不好平凑的<ul>
+<li>整数部分：除2留余数，先留是低位后留是⾼位</li>
+<li>⼩数部分：乘2取整，先取是⾼位后取是低位</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li><p><strong>定点数的编码表示</strong></p>
+<ul>
+<li><p>:flags:无符号数的表示</p>
+<ul>
+<li>重点关注⽆符号数的“减法”如何实现，以及⽆符号数加法/减法的溢出判断</li>
+</ul>
+</li>
+<li><p>带符号整数的表示</p>
+<ul>
+<li>[ ] 原</li>
+<li>[ ] 反</li>
+<li>[x] 补<ul>
+<li>重点关注补码的“减法”如何实现，以及补码加法/减法的溢出判断</li>
+</ul>
+</li>
+<li>[ ] 移<ul>
+<li>注意偏移量是多少</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>把符号位和数值位⼀起编码的⽅法</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ul>
+<li><p>（⼆） 运算⽅法和运算电路</p>
+<ol>
+<li><p>基本运算部件</p>
+<ul>
+<li><p>加法器</p>
+</li>
+<li><p>算数逻辑部件（<code>ALU</code>）</p>
+</li>
+</ul>
+</li>
+<li><p>加/减运算</p>
+<ul>
+<li>补码加/减运算器</li>
+<li>标志位的⽣成<ul>
+<li><code>CF</code>、<code>SF</code>、<code>ZF</code>、<code>OF</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>乘/除运算</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>（三）整数的表示和运算<ol>
+<li>⽆符号整数的表示和运算<ul>
+<li>表示</li>
+<li>运算<ul>
+<li>加、减、乘、除</li>
+<li>溢出判断</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>带符号整数的表示和运算<ul>
+<li>表示<ul>
+<li>原、反、补、移</li>
+</ul>
+</li>
+<li>运算（仅关注补码即可）<ul>
+<li>加、减、乘、除</li>
+<li>溢出判断</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>（四）整浮点数的表示和运算</p>
+<ol>
+<li><p>浮点数的表示： <code>IEEE754</code> 标准</p>
+<ul>
+<li>结构：符号位+阶码+尾数<ul>
+<li><code>float</code>：<code>1+8+23</code></li>
+<li><code>double</code>：<code>1+11+52</code></li>
+<li><code>long double</code>：<code>1+15+64</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>浮点数的加/减运算</p>
+<ul>
+<li><p>对阶：⼩阶向⼤阶对⻬</p>
+</li>
+<li><p>尾数加减：原码定点数的加减法</p>
+<ul>
+<li><p>规格化：尾数规格化为 <code>1.xxxxx</code>的形式</p>
+<ul>
+<li><p>尾数每左规⼀位，阶码 <code>- 1</code></p>
+</li>
+<li><p>尾数每右规⼀位，阶码 <code>+ 1</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>舍⼊：尾数右规时，可能导致精度丢失，需考虑舍⼊问题</p>
+</li>
+<li><p>判溢出</p>
+<ul>
+<li><p>尾数右规时，阶码超出可表示的最⼤值，上溢 </p>
+<ul>
+<li>[x] 发⽣溢出异常</li>
+</ul>
+</li>
+<li><p>尾数左规时，阶码低于可表示的最⼩值，下溢 </p>
+<ul>
+<li>[x] 当做机器0处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>408</category>
+      </categories>
+      <tags>
+        <tag>408</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一条指令的硬件实现的思维导图</title>
+    <url>/2024/08/10/Study/408-p5/</url>
+    <content><![CDATA[<h1 id="一条指令的硬件实现"><a href="#一条指令的硬件实现" class="headerlink" title="一条指令的硬件实现"></a>一条指令的硬件实现</h1><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><h3 id="Ch5-中央处理器-CPU"><a href="#Ch5-中央处理器-CPU" class="headerlink" title="Ch5 中央处理器(CPU)"></a>Ch5 中央处理器(CPU)</h3><h4 id="一-CPU的功能和结构"><a href="#一-CPU的功能和结构" class="headerlink" title="(一) CPU的功能和结构"></a>(一) CPU的功能和结构</h4><ul>
+<li><p>CPU =  控制器 + 数据通路 </p>
+<blockquote>
+<ul>
+<li>控制器, 即<code>CU</code>, 是指令的控制部件</li>
+<li>数据通路, 是指令的执行部件,包括运算器,寄存器,数据传输的线路等</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h4 id="二-指令执行过程"><a href="#二-指令执行过程" class="headerlink" title="(二)指令执行过程"></a>(二)指令执行过程</h4><ul>
+<li><p>取指 译码 </p>
+<blockquote>
+<ul>
+<li>取指令<code>IR</code>, <code>PC + “1”</code></li>
+<li><code>CU</code>根据指令<code>IR</code>译码, 确定指令的执行时序</li>
+</ul>
+</blockquote>
+</li>
+<li><p>执行</p>
+<blockquote>
+<ul>
+<li>取操作数, 运算, 存结果</li>
+<li>异常/中断的检测与处理(如果有的话)</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h4 id="三-数据通路的功能和基本结构"><a href="#三-数据通路的功能和基本结构" class="headerlink" title="(三) 数据通路的功能和基本结构"></a>(三) 数据通路的功能和基本结构</h4><hr>
+<h4 id="四-控制器的功能和工作原理"><a href="#四-控制器的功能和工作原理" class="headerlink" title="(四) 控制器的功能和工作原理"></a>(四) 控制器的功能和工作原理</h4><ul>
+<li><ol>
+<li>硬布线控制器</li>
+</ol>
+</li>
+<li><ol>
+<li>微程序控制器</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p> 2022大纲更新后考察权重被弱化</p>
+</blockquote>
+<hr>
+<h4 id="五-异常和中断机制"><a href="#五-异常和中断机制" class="headerlink" title="(五) 异常和中断机制"></a>(五) 异常和中断机制</h4><ul>
+<li><ol>
+<li>异常和中断的基本概念</li>
+</ol>
+</li>
+<li><ol>
+<li>异常和中断的分类</li>
+</ol>
+</li>
+<li><ol>
+<li>异常和中断的检测与响应<blockquote>
+<ul>
+<li><p>:large_blue_circle: 软件识别（<code>MIPS</code>采⽤） </p>
+<ol>
+<li>CPU内部设置⼀个“异常状态寄存器”，⽤于保存异常原因。</li>
+<li>检测到异常/中断后，固定跳转到⼀个异常处理（⼊⼝）程序，<br>由它判断“异常状态寄存器”的值，再决定要跳转到⼀个具体的异常/中断处理程序</li>
+</ol>
+</li>
+<li><p>:large_blue_circle: 硬件识别（<code>x86</code>采⽤）</p>
+<ol>
+<li>每个异常/中断都有⼀个中断号，硬件根据中断</li>
+</ol>
+<p>号，找到中断向量，并跳转⾄对应的异常/中断处</p>
+<p>理程序</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="六-指令流⽔线"><a href="#六-指令流⽔线" class="headerlink" title="(六) 指令流⽔线"></a>(六) 指令流⽔线</h4><ol>
+<li>指令流⽔线的基本概念</li>
+<li>指令流⽔线的基本实现</li>
+<li>结构冒险、数据冒险、控制冒险的处理</li>
+<li>超标量和动态流⽔线的基本概念</li>
+</ol>
+<hr>
+<h4 id="七-多处理器基本概念"><a href="#七-多处理器基本概念" class="headerlink" title="(七) 多处理器基本概念"></a>(七) 多处理器基本概念</h4><ol>
+<li><code>SISD</code>、<code>SIMD</code>、<code>MIMD</code>、向量处理器的基本概<br>念</li>
+<li>硬件多线程的基本概念</li>
+<li>多核处理器（multi-core）的基本概念</li>
+<li>共享内存多处理器（SMP）的基本概念</li>
+</ol>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h4 id="分析框架-——-⼀条指令的执⾏过程"><a href="#分析框架-——-⼀条指令的执⾏过程" class="headerlink" title="分析框架  —— ⼀条指令的执⾏过程"></a>分析框架  —— ⼀条指令的执⾏过程</h4><ul>
+<li><p>①取指阶段（所有指令在取指阶段做的事情都⼀样）</p>
+<ul>
+<li>②执⾏阶段（根据指令类别来思考）<ul>
+<li>数据传送类指令（如：<code>mov</code>、<code>load</code>、<code>store</code>）</li>
+<li>运算类指令（如：<code>加</code>、<code>减</code>、<code>乘</code>、<code>除</code>、<code>移位</code>、<code>与</code>、<code>或</code>）</li>
+<li>转移类指令（如：<code>jmp</code>、<code>jxxx</code>）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>参⻅“直播⼿稿”</p>
+</blockquote>
+<hr>
+<h4 id="如何⽤硬件实现指令功能？"><a href="#如何⽤硬件实现指令功能？" class="headerlink" title="如何⽤硬件实现指令功能？"></a>如何⽤硬件实现指令功能？</h4><ul>
+<li><p><code>Key</code>：指令的功能，要⽤什么硬件部件实现？数据应该如何流动？——硬件的控制信号、连线只是实现逻辑</p>
+<p>的⼀种外化体现。</p>
+</li>
+<li><p>控制硬件的信号</p>
+<ul>
+<li><code>XXXin</code> 允许数据进⼊</li>
+<li><code>XXXout</code> 允许数据出去</li>
+<li><code>XXXop</code> 具体的控制信号</li>
+</ul>
+</li>
+<li><p>常⻅硬件</p>
+<ol>
+<li><p>操作元件（组合逻辑元件）</p>
+<blockquote>
+<ul>
+<li><p>三态⻔</p>
+<ul>
+<li>就是⼀道⻔，可开可关<ul>
+<li>控制信号：<code>1 bit</code>，⽤于控制<code>开/关</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>加法器（<code>Adder</code>）</p>
+<ul>
+<li>结合第⼆章复习，相当于弱鸡版ALU，只能实现加法、减法控制信号：<code>1 bit</code> <ul>
+<li><code>0</code>加<code>1</code>减，控制信号的值会影响 <code>CF</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>算术逻辑单元（<code>ALU</code>）</p>
+<ul>
+<li><p>实现加减乘除等算数运算、与或⾮等逻辑运算</p>
+</li>
+<li><p>控制信号：<code>n bit</code>，取决于<code>ALU</code>⽀持多少种运算，<code>`n bit</code>控制信号，对应 $2^n$ 种运算</p>
+</li>
+</ul>
+</li>
+<li><p>多路选择器（<code>MUX</code>）</p>
+<ul>
+<li><p>有多路输⼊，通过控制信号来选择让其中的某条输⼊通路被打开</p>
+</li>
+<li><p>控制信号：<code>n bit</code>，取决于有多少路输⼊，<code>n bit</code>控制信号，对应 $2^n$ 路</p>
+</li>
+</ul>
+</li>
+<li><p>译码器（<code>Decoder</code>）</p>
+<ul>
+<li><p>根据 <code>n bit</code> 控制信号选择将 $2^n$ 条输出线路中的某⼀条信号选通为<code>1</code></p>
+</li>
+<li><p>控制信号：<code>n bit</code>。由译码器的 <code>n bit</code>输⼊即可决定选通哪根</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>存储元件（时序逻辑元件）</p>
+<blockquote>
+<ul>
+<li><p>普通寄存器</p>
+<ul>
+<li>关注具有特定⽤途的寄存器：<code>MAR</code>、<code>MDR</code>、<code>IR</code>、<code>PC</code>、<code>FR</code>（即标志寄存器，有的系统中称为<code>PSW</code>）</li>
+<li>控制信号：允许读、允许写</li>
+</ul>
+</li>
+<li><p>暂存寄存器</p>
+<ul>
+<li>通常会在单总线结构中和<code>ALU</code>配合使⽤</li>
+<li>控制信号：允许读、允许写</li>
+</ul>
+</li>
+<li><p>通⽤寄存器组</p>
+<ul>
+<li><p>控制信号1：允许读、允许写</p>
+</li>
+<li><p>控制信号2：若通⽤寄存器组共有 $2^n$ 个寄存器，则需要<code>n bit</code>控制信号选择其中⼀个寄存器</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p> ==注意：有的寄存器可能⽀持特殊功能==</p>
+<blockquote>
+<ul>
+<li><p>带“移位功能”的寄存器</p>
+<ul>
+<li><p>可以实现移位运算（算数左移/右移、逻辑左移/右移）</p>
+</li>
+<li><p>隐藏技能：⽤移位运算等价实现 “乘/除 $2^n$”</p>
+</li>
+</ul>
+</li>
+<li><p>带“⾃增、⾃减功能”的寄存器</p>
+<ul>
+<li><p>可实现寄存器的值<code>++</code>、<code>--</code></p>
+</li>
+<li><p>常⻅⽤途：有的<code>PC</code>寄存器带有⾃增功能</p>
+</li>
+<li><p>带其他特殊功能的寄存器</p>
+<ol>
+<li>带“符号扩展”功能的寄存器</li>
+</ol>
+<ul>
+<li>可以将位数短的带符号数（补码）扩展为位数更⻓的带符号数（补码）</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>带“零扩展”功能的寄存器<ul>
+<li>可以将位数短的⽆符号数扩展为位数更⻓的⽆符号数</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>带“取反功能”的寄存器 <ul>
+<li>可以实现全部位按位取反</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h4 id="如何看懂“注释”"><a href="#如何看懂“注释”" class="headerlink" title="如何看懂“注释”"></a>如何看懂“注释”</h4><ol>
+<li>袁版注释⻛格（16年以后的真题）<ul>
+<li>数据在通⽤寄存器组<ul>
+<li>特点：⽤<code>R[i]</code>表示，中括号内为寄存器编号</li>
+<li>eg：<code>R[6]×R[3]→R[2]</code>。将寄存器<code>R6</code>×<code>R3</code>的内容写⼊<code>R2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>数据在某个特殊名字的寄存器</p>
+<ul>
+<li>特点：直接⽤寄存器名字表示</li>
+<li>eg：<code>R[6]+10→PC</code>。把寄存器<code>R6+10</code>的内容写⼊<code>PC</code></li>
+<li>eg：<code>MDR→PC</code>。把<code>MDR</code>的内容写⼊<code>PC</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>数据在主存</p>
+<ul>
+<li>特点：⽤<code>M[addr]</code>表示，<code>addr</code>为主存地址</li>
+<li>eg：<code>R[6]→M[10086]</code>   将<code>R6</code>的内容存⼊主存地址<code>10086</code></li>
+<li>eg：<code>R[3]&lt;&lt;2→M[R[6]]</code>  将R3进⾏“左移两位”运算，并将结果存⼊<code>R6</code>所指的主存地址（寄存器间接寻址）</li>
+<li>eg：<code>M[PC+10]→MDR</code> 将 <code>PC+10</code>指向的主存内容取到<code>MDR</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>特点总结</p>
+<ul>
+<li><p>喜欢⽤“中括号”，中括号⾥边表示寄存器编号、或主存地址</p>
+</li>
+<li><p>要使⽤寄存器⾥的内容，不⽤加⼩括号，直接给寄存器名即可</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>唐版注释⻛格（16年以前的真题）<ul>
+<li>数据在通⽤寄存器组<ul>
+<li>特点：箭头左边，⽤寄存器名加⼩括号，表示寄存器⾥的值；箭头右边表示存⼊某个寄存器不加⼩括号</li>
+<li>eg：<code>(R6)×(R3)→R2</code>。将寄存器<code>R6</code>×<code>R3</code>的内容写⼊<code>R2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>数据在某个特殊名字的寄存器</p>
+<ul>
+<li>特点：特点：直接⽤寄存器名字表示，要使⽤寄存器⾥的值需要加⼩括号</li>
+<li>eg：<code>(R6)+10→PC</code>。把寄存器<code>R6+10</code>的内容写⼊<code>PC</code></li>
+<li>eg：<code>(MDR)→PC</code>。把<code>MDR</code>的内容写⼊<code>PC</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>数据在主存</p>
+<ul>
+<li>特点：⽤<code>M(addr)</code>表示，<code>addr</code>为主存地址</li>
+<li>eg：<code>R(6)→M(10086)</code>   将<code>R6</code>的内容存⼊主存地址<code>10086</code></li>
+<li>eg：<code>R(3)&lt;&lt;2→M((R(6))</code>  将R3进⾏“左移两位”运算，并将结果存⼊<code>R6</code>所指的主存地址（寄存器间接寻址）</li>
+<li>eg：<code>((PC)+10)→MDR</code> <ul>
+<li>将 <code>PC+10</code>指向的主存内容取到<code>MDR</code><ul>
+<li>在箭头的左边表示“访问主存”时，可以不加M，⽤两层括号表示寄存器间接寻址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>特点总结</p>
+<ul>
+<li><p>喜欢⽤“小括号”</p>
+</li>
+<li><p>箭头左边若要使⽤某个寄存器⾥的内容，必须在寄存器名字外⾯加⼩括号</p>
+</li>
+<li>箭头右边表示存⼊某个寄存器，不⽤加⼩括号</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>408</category>
+      </categories>
+      <tags>
+        <tag>408</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一堆指令的执行思维导图</title>
+    <url>/2024/08/10/Study/408-p4/</url>
+    <content><![CDATA[<h1 id="一堆指令的执行"><a href="#一堆指令的执行" class="headerlink" title="一堆指令的执行"></a>一堆指令的执行</h1><h2 id="大纲-CH4指令系统"><a href="#大纲-CH4指令系统" class="headerlink" title="大纲 - CH4指令系统"></a><strong>大纲 - CH4指令系统</strong></h2><h4 id="（一）指令系统的基本概念"><a href="#（一）指令系统的基本概念" class="headerlink" title="（一）指令系统的基本概念"></a>（一）指令系统的基本概念</h4><hr>
+<h4 id="（二）指令格式"><a href="#（二）指令格式" class="headerlink" title="（二）指令格式"></a>（二）指令格式</h4><ol>
+<li><p>指令的基本格式</p>
+<ul>
+<li><p>操作码 —— 指明了动作</p>
+</li>
+<li><p>操作数（可能有<code>0 ~ n</code>个）</p>
+</li>
+<li><p>寻址方式 —— 怎么找到这个操作数？</p>
+<ul>
+<li>形式地址<blockquote>
+<ul>
+<li><strong>形式地址（需转成有效地址EA）</strong></li>
+<li><strong>指令运行时需转成有效地址EA     </strong> </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>根据指令长度是否固定不变，分为两类</p>
+<blockquote>
+<ul>
+<li><strong>定长指令字  —— 每次PC + “1”， “1”固定</strong></li>
+<li><strong>变长指令字  —— 每次PC + “1”， “1”不固定</strong></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>定长操作码指令格式  —— 操作码的位数固定不变</p>
+</li>
+<li><p>扩展操作码指令格式  —— 操作码的位数可能会改变</p>
+</li>
+</ol>
+<hr>
+<h4 id="（三）寻址方式"><a href="#（三）寻址方式" class="headerlink" title="（三）寻址方式"></a>（三）寻址方式</h4><ol>
+<li><p>有效地址的概念 EA: 最重要的访问的地址 </p>
+</li>
+<li><p>要寻找什么</p>
+<blockquote>
+<ul>
+<li><strong>数据寻址：找数据 —— 找到你要操作的数据</strong></li>
+<li><strong>指令寻址：找吓一跳要执行的指令 —— 影响PC的值</strong></li>
+</ul>
+</blockquote>
+</li>
+<li><p>常见的寻址方式 —— </p>
+</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">寻址方式</th>
+<th style="text-align:center">有效地址</th>
+<th style="text-align:center">访存次数（指令执行期间）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">隐含寻址</td>
+<td style="text-align:center">程序指定</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">立即寻址</td>
+<td style="text-align:center">A即是操作数</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">直接寻址</td>
+<td style="text-align:center">EA = A</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">一次间接寻址</td>
+<td style="text-align:center">EA = (A)</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">寄存器寻址</td>
+<td style="text-align:center">EA = R</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">寄存器间接一次寻址</td>
+<td style="text-align:center">EA = (R)</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">相对寻址</td>
+<td style="text-align:center">EA = (PC) + A</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">基址寻址</td>
+<td style="text-align:center">EA = (BR) + A</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">变址寻址</td>
+<td style="text-align:center">EA = (DC) + A</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">堆栈寻址</td>
+<td style="text-align:center">入栈出栈时EA的确定方式不同</td>
+<td style="text-align:center">硬堆栈不访存<br>软堆栈访存1次</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="（四）数据的对齐和大-小端存放方式"><a href="#（四）数据的对齐和大-小端存放方式" class="headerlink" title="（四）数据的对齐和大/小端存放方式"></a>（四）数据的对齐和大/小端存放方式</h4><ul>
+<li><p>数据的对齐</p>
+<ul>
+<li><strong>按边界对齐</strong></li>
+<li><strong>不按边界对齐</strong></li>
+</ul>
+</li>
+<li><p>存放方式</p>
+<ul>
+<li><strong>大端存储（更符合人类的视角）</strong></li>
+<li><strong>小端存储</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="（五）CISC和RISC的基本概念"><a href="#（五）CISC和RISC的基本概念" class="headerlink" title="（五）CISC和RISC的基本概念"></a>（五）CISC和RISC的基本概念</h4><ul>
+<li>从机器级代码中可以看到的显著区别<ul>
+<li>指令字是否定长？</li>
+<li>除了Load, Store 之外，是否还有其他可以指令访存？</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="⭐（六）CISC和RISC的基本概念"><a href="#⭐（六）CISC和RISC的基本概念" class="headerlink" title="⭐（六）CISC和RISC的基本概念"></a>⭐（六）CISC和RISC的基本概念</h4><ol>
+<li>编译器、汇编器、链接器的基本概念</li>
+<li>⭐选择结构语句的机器级表示</li>
+<li>⭐循环结构语句的机器级表示</li>
+<li>⭐过程（函数）调⽤对应的机器级表示</li>
+</ol>
+<hr>
+<h2 id="star2-解题方法"><a href="#star2-解题方法" class="headerlink" title=":star2:解题方法"></a>:star2:解题方法</h2><h4 id="先观察汇编语⾔，是x86还是MIPS？"><a href="#先观察汇编语⾔，是x86还是MIPS？" class="headerlink" title="先观察汇编语⾔，是x86还是MIPS？"></a>先观察汇编语⾔，是x86还是MIPS？</h4><p>​    :one:观察是否有注释<br>​    :two:观察指令长度是否固定<br>​       &gt; - <strong><code>x86</code>属于<code>CISC</code>，指令长度不固定</strong><br>​       &gt; - <strong><code>MIPS</code>属于<code>RISC</code>，指令长度固定</strong></p>
+<p>   :three:观察是否有注释</p>
+<hr>
+<h4 id="x86"><a href="#x86" class="headerlink" title="x86"></a><code>x86</code></h4><ol>
+<li><p>先搞懂<code>C语言</code></p>
+</li>
+<li><p>基于<code>C语言</code>的逻辑分析机器指令</p>
+<ul>
+<li>有没有分支结构？ —— 观察有没有<code>jxxx</code>指令</li>
+<li>有没有循环结构？<blockquote>
+<ul>
+<li><strong>观察没有<code>jxxx</code>指令</strong></li>
+<li><strong>观察没有<code>loopjxxx</code>指令</strong></li>
+</ul>
+</blockquote>
+</li>
+<li>有没有函数调⽤？<blockquote>
+<ul>
+<li><strong>观察有没有 <code>call</code> 指令</strong></li>
+<li><strong>观察有没有 <code>ret</code> 指令</strong></li>
+</ul>
+</blockquote>
+</li>
+<li>需不需要访问函数调⽤参数？观察在汇编语⾔中如何访问调⽤参数？ <blockquote>
+<p>注：函数在调用参数一般在<code>[ebp+8]</code>、<code>[ebp+12]</code>等位置</p>
+</blockquote>
+</li>
+<li>需不需要定义局部变量？观察在汇编语⾔中如何访问局部变量？<blockquote>
+<p>注：局部变量的存储地址⼀般在 <code>[ebp-4]</code>、<code>[ebp-8]</code>、<code>[ebp-12]</code> 等位置</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="MIPS"><a href="#MIPS" class="headerlink" title="MIPS"></a><code>MIPS</code></h4><ul>
+<li>先搞懂<code>C语言</code></li>
+<li><p>基于<code>C语言</code>的逻辑分析机器指令</p>
+<ul>
+<li>有没有分支结构？</li>
+<li>有没有循环结构？</li>
+<li>有没有函数调用？</li>
+</ul>
+</li>
+<li><p>考不考流水线？</p>
+<ul>
+<li>对指令进行分类 —— 五类指令，每一类指令的运行原理要搞清楚</li>
+<li>安排指令流水线</li>
+<li>分析数据冒险、控制冒险</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h4 id="x86汇编指令（重点关注-intel-格式）"><a href="#x86汇编指令（重点关注-intel-格式）" class="headerlink" title="x86汇编指令（重点关注 intel 格式）"></a>x86汇编指令（重点关注 intel 格式）</h4><ul>
+<li><p>算数、逻辑运算类指令 加、减、乘、除、左移、右移 等指令</p>
+</li>
+<li><p>分⽀结构（if/else）</p>
+<ul>
+<li>⽆条件转移（<code>goto</code>）—— <code>jmp</code> （⽆条件转移指令），类似于<code>C语⾔</code>的<code>goto</code></li>
+<li><p>条件转移指令（<code>if</code>/<code>else</code>）<br>  ① <code>cmp A，B</code> （本质是 A-B，A-B 的标志位信息会存放在PSW中)<br>  会存放到PSW中）<br>  ② <code>jxxx</code> （转移指令指令）</p>
+<ul>
+<li>⽆符号数减法关注 <code>CF</code>、<code>ZF</code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">A == B   —— 需要满足 ZF == 1</span><br><span class="line">A != B   —— 需要满足 ZF == 0</span><br><span class="line">A &gt;= B   —— 需要满足 CF == 0</span><br><span class="line">A &lt;= B   —— 需要满足 CF == 1 || ZF == 1</span><br><span class="line">A &gt; B    —— 需要满足 CF == 0 &amp;&amp; ZF == 0</span><br><span class="line">A &lt; B    —— 需要满足 CF == 1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>有符号数减法关注 <code>OF</code>、<code>SF</code>、<code>ZF</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">A == B   —— 需要满足 ZF == 1</span><br><span class="line">A != B   —— 需要满足 ZF == 0</span><br><span class="line">A &gt;= B   —— 需要满足 ZF == 0</span><br><span class="line">A &lt;= B   —— 需要满足 SF == OF</span><br><span class="line">A &gt; B    —— 需要满足 SF!=0F || ZF == 1</span><br><span class="line">A &lt; B    —— 需要满足 SF!=0F &amp;&amp; ZF == 0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>==转移类指令，通常采⽤相对寻址。⽤补码表示偏移量。==</p>
+<p>==补码的值通常意味着PC要 往前/往后 跳多少个地址（注意：偏移量的单位可能是字节，也可能是指令字⻓）==</p>
+<p>x86属于CISC，指令字⻓不固定，因此转移类指令中⼀定是以“字节”为单位描述PC的偏移量<sup><a href="#fn_对比二者" id="reffn_对比二者">对比二者</a></sup></p>
+<ul>
+<li>循环结构（<code>for while</code>）<ul>
+<li><code>xxxloopxxxx &lt;label&gt;</code> 原理同跳转指令</li>
+<li>条件跳转指令<code>jLxxxx</code> 也可以⽤于实现循环</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>函数调⽤/返回<ul>
+<li>调⽤指令 <code>call &lt;label&gt;</code><ul>
+<li>当前PC值压栈保存，再修改PC的值，跳转到<code>&lt;label&gt;</code></li>
+<li>与⽆条件转移指令<code>jmp</code>的区别 call 指令会将函数返回地址(当前的<code>PC</code>)⼊栈<br>返回指令 —— <code>ret</code> 恢复程序计数器<code>PC</code>，返回原函数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="MIPS-汇编指令（重点关注-intel-格式）"><a href="#MIPS-汇编指令（重点关注-intel-格式）" class="headerlink" title="MIPS 汇编指令（重点关注 intel 格式）"></a>MIPS 汇编指令（重点关注 intel 格式）</h4><ol>
+<li><p>算数、逻辑运算类指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">加 —— OP：add</span><br><span class="line">减 —— OP：sub</span><br><span class="line">乘 —— OP：mul</span><br><span class="line">除 —— OP：div</span><br><span class="line">左移 —— OP：shl</span><br><span class="line">右移 —— OP：shr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>⽆条件转移指令</p>
+<ul>
+<li><code>j</code> —— <code>j &lt;label&gt;</code></li>
+<li><code>b</code> —— <code>b &lt;lable&gt;</code></li>
+</ul>
+</li>
+<li><p>条件转移指令 <code>bxxx</code> ——<code>b</code>开头，意思是 <strong>branch</strong></p>
+<blockquote>
+<p><strong>转移类指令（2. / 3.）</strong>，通常采⽤相对寻址。⽤补码表示偏移量。</p>
+<p>补码的值通常意味着<code>PC</code>要 往前/往后 跳多少个地址</p>
+<p>（注意：偏移量的单位可能是字节，也可能是指令字⻓）</p>
+<hr>
+<p><code>MIPS</code>属于<code>RISC</code>，指令字⻓固定，因此转移类指令中</p>
+<p>可能会以“指令字⻓”为单位描述PC的偏移量（参考 2013年真题）<sup><a href="#fn_对比二者" id="reffn_对比二者">对比二者</a></sup></p>
+</blockquote>
+</li>
+</ol>
+<blockquote id="fn_对比二者">
+<sup>对比二者</sup>. 对比二者的区别<a href="#reffn_对比二者" title="Jump back to footnote [对比二者] in the text."> &#8617;</a>
+</blockquote>
+<ol>
+<li><p><code>Load</code>指令  ——<code>Load</code> 寄存器，内存地址</p>
+</li>
+<li><p><code>Store</code>指令  ——<code>Store</code>内存地址，寄存器 </p>
+<blockquote>
+<p><code>Load</code>指令和<code>`Store</code>指令是唯二会访存的指令</p>
+</blockquote>
+</li>
+<li><p>:flags: 结合五段式指令流水线考察</p>
+<ul>
+<li><p>数据冒险 —— 什么指令可能导致数据冒险？</p>
+<ul>
+<li>前⾯的指令：写某个寄存器 <code>WB</code>，第五个段</li>
+<li>后⾯的指令：读（同⼀个）寄存器 —— <code>ID</code>，第⼆个段</li>
+<li>分析思路  <ul>
+<li>⼀条⼀条指令从前往后分析，如果⼀条指令写了某个寄存器，<br>则观察与之相邻的3条指令中，有没有哪条指令需要读同⼀个寄存器</li>
+<li>当后⾯的指令和前⾯的指令中间，还有其他三条指令时，才不会发⽣数据冒险</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>控制冒险 —— 什么指令可能导致控制冒险？——会改变PC值的</p>
+<ul>
+<li><p>⽆条件转移（注：<code>call</code>、<code>ret</code>属于⽆条件转移）</p>
+<ul>
+<li><p><code>EX</code>，第三个段改变<code>PC</code></p>
+</li>
+<li><p>处理控制冒险的⽅法：停两个周期，再取下⼀条</p>
+<p>指令（IF段），就不会发⽣控制冒险</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>有条件转移</p>
+<ul>
+<li><code>M</code>，第四个段改变<code>PC</code></li>
+<li>处理控制冒险的⽅法：停三个周期，再取下⼀条指令（<code>IF</code>段），就不会发⽣控制冒险</li>
+<li>若未发⽣转移（不满⾜条件），则不会发⽣控制冒险</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ol>
+<p><img src="C:/Users/FAN/AppData/Roaming/Typora/typora-user-images/image-20240810194506572.png" alt="image-20240810194506572"></p>
+<ul>
+<li><p><strong>运算类指令</strong></p>
+</li>
+<li><p><code>IF</code>：根据PC从指令<code>`Cache</code>取指令至<code>IF</code>段的锁存器</p>
+</li>
+<li><p><code>ID</code>: 取出操作数至<code>ID</code>段锁存器</p>
+</li>
+<li><p><code>EX</code>: 运算, 将结果存入<code>EX</code>段锁存器</p>
+</li>
+<li><p><code>M</code>: <strong>空段</strong></p>
+</li>
+<li><p><code>WB</code>: 将运算结果写回指定寄存器</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>LOAD指令</strong></p>
+</li>
+<li><p><code>IF</code>：根据PC从指令<code>`Cache</code>取指令至<code>IF</code>段的锁存器</p>
+</li>
+<li><p><code>ID</code>: 将基址寄存器的值放到锁存器<code>A</code>, 将偏移量的值放到<code>Imm</code></p>
+</li>
+<li><p><code>EX</code>: 运算, 得到有效地址</p>
+</li>
+<li><p><code>M</code>: 从数据<code>Cache</code>中取数并放入锁存器</p>
+</li>
+<li><p><code>WB</code>: 将运算结果写回指定寄存器</p>
+</li>
+</ul>
+<ul>
+<li><strong>STORE指令</strong></li>
+<li><code>IF</code>：根据<code>PC</code>从指令<code>Cache</code>取指令至<code>IF</code>段的锁存器</li>
+<li><code>ID</code>: 将基址寄存器的值放到锁存器<code>A</code>, 将偏移量的值放到<code>Imm</code>. 将要存的数放到B</li>
+<li><code>EX</code>: 运算, 得到有效地址. 并将锁存器<code>B</code>的内容放到锁存器<code>Store</code></li>
+<li><code>M</code>: 写入<code>cache</code></li>
+<li><code>WB</code>: <strong>空段</strong></li>
+</ul>
+<ul>
+<li><strong>条件转移指令</strong></li>
+<li><code>IF</code>：根据<code>PC</code>从指令<code>Cache</code>取指令至<code>IF</code>段的锁存器</li>
+<li><code>ID</code>: 进行比较的两个数放入锁存器<code>A</code>, <code>B</code>; 偏移量放入<code>Imm</code></li>
+<li><code>EX</code>: 运算, 比较两个数</li>
+<li><code>M</code>: 将目标<code>PC</code>值写回<code>PC</code>(图没画全)</li>
+<li><code>WB</code>: <strong>空段</strong><blockquote>
+<p>很多教材把写回<code>PC</code>的功能段称为<code>WrPC</code>段, 其耗时比<code>M</code>段更短,可安排在<code>M</code>段时间内完成</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><strong>无条件转移指令</strong></li>
+<li><code>IF</code>：根据<code>PC</code>从指令<code>Cache</code>取指令至<code>IF</code>段的锁存器</li>
+<li><code>ID</code>: 偏移量放入<code>Imm</code></li>
+<li><code>EX</code>: 将目标PC值写回PC(图没画全)</li>
+<li><code>M</code>: <strong>空段</strong></li>
+<li><code>WB</code>: <strong>空段</strong></li>
+</ul>
+<hr>
+<h2 id="MIPS-汇编指令（重点关注-intel-格式）-1"><a href="#MIPS-汇编指令（重点关注-intel-格式）-1" class="headerlink" title="MIPS 汇编指令（重点关注 intel 格式）"></a>MIPS 汇编指令（重点关注 intel 格式）</h2><h4 id="x86汇编语言-AT-amp-T和Intel格式的区别"><a href="#x86汇编语言-AT-amp-T和Intel格式的区别" class="headerlink" title="x86汇编语言, AT&amp;T和Intel格式的区别"></a><code>x86</code>汇编语言, <code>AT&amp;T</code>和<code>Intel</code>格式的区别</h4><p><img src="https://s2.loli.net/2024/08/10/XF56PQgBJKnDMYy.png" alt="image-20240810200554222"></p>
+]]></content>
+      <categories>
+        <category>408</category>
+      </categories>
+      <tags>
+        <tag>408</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CMake 的简单使用</title>
+    <url>/2024/05/21/Study/CMake%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>CE的工作原理 笔记</title>
+    <url>/2024/05/12/Study/408-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<p>参考的书是王道复习指导书</p>
+<p>[TOC]</p>
+<h1 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h1><p>内存管理以及文件管理:</p>
+<h1 id="第一章：操作系统概述与发展历史"><a href="#第一章：操作系统概述与发展历史" class="headerlink" title="第一章：操作系统概述与发展历史"></a>第一章：操作系统概述与发展历史</h1><h2 id="操作系统的基本概念"><a href="#操作系统的基本概念" class="headerlink" title="操作系统的基本概念"></a>操作系统的基本概念</h2><p>操作系统自下而上管理软件和硬件 大致可以分为以下几个部分</p>
+<p><pre class="mermaid">graph TD
+    A[硬件] --> B[操作系统] --> C[应用程序] --> D[用户]</pre></p>
+<h2 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h2><ol>
+<li>并发 <strong>宏观上并行, 微观上串行</strong> 微观上程序仍然是</li>
+<li>共享 <ul>
+<li>互斥的共享访问<ul>
+<li>对<code>临界资源</code>的互斥访问,见进程调度</li>
+</ul>
+</li>
+<li>同时访问<ul>
+<li><a href="#读者写者代码">读者写者问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>虚拟<ul>
+<li><code>SPOOLing(假脱机)技术</code></li>
+<li>虚拟内存(外内存交换 - 有缺页现象)</li>
+<li></li>
+</ul>
+</li>
+<li>异步<br> 多道程序设计允许多个程序<code>并发</code>运行<ul>
+<li>单核CPU同一时间只能对同一个<code>线程</code>或者<code>进程</code>进行调度<h2 id="操作系统的目标与功能"><a href="#操作系统的目标与功能" class="headerlink" title="操作系统的目标与功能"></a>操作系统的目标与功能</h2></li>
+</ul>
+</li>
+</ol>
+<h1 id="第二章：进程相关概念与进程调度"><a href="#第二章：进程相关概念与进程调度" class="headerlink" title="第二章：进程相关概念与进程调度"></a>第二章：进程相关概念与进程调度</h1><h4 id="读者写者代码"><a href="#读者写者代码" class="headerlink" title="读者写者代码"></a>读者写者代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="第三章：内存管理"><a href="#第三章：内存管理" class="headerlink" title="第三章：内存管理"></a>第三章：内存管理</h1><h1 id="第四章：文件管理"><a href="#第四章：文件管理" class="headerlink" title="第四章：文件管理"></a>第四章：文件管理</h1><h1 id="第五章：I-O设备及其管理（与计算机组成原理高度相关）"><a href="#第五章：I-O设备及其管理（与计算机组成原理高度相关）" class="headerlink" title="第五章：I/O设备及其管理（与计算机组成原理高度相关）"></a>第五章：I/O设备及其管理（与计算机组成原理高度相关）</h1>]]></content>
+  </entry>
+  <entry>
     <title>OOP 面向对象编程学习(翁凯)</title>
     <url>/2023/01/05/Study/%E7%BF%81%E5%87%AF%E7%9A%84C++%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p>翁凯的C++学习笔记1</p>
@@ -1054,7 +2378,7 @@ p_i = \frac{i}{(M\times N)} \space,\space i为出现的个数</script><p>共生�
 <hr>
 <blockquote>
 <p>引用<br>换行</p>
-<p>分段</p>
+<p>分段<br>引用<br>换行</p>
 </blockquote>
 <div class="table-container">
 <table>
@@ -1092,7 +2416,85 @@ p_i = \frac{i}{(M\times N)} \space,\space i为出现的个数</script><p>共生�
 \sum_{d|n} \varphi(d) &= n \\
 \end{aligned}</script><p>It was terribly cold and nearly dark on the last evening of the old year, and the snow was falling fast. In the cold and the darkness, a poor little girl, with bare head and naked feet, roamed through the streets. It is true she had on a pair of slippers when she left home, but they were not of much use. They were very large, so large, indeed, that they had belonged to her mother, and the poor little creature had lost them in running across the street to avoid two carriages that were rolling along at a terrible rate. One of the slippers she could not find, and a boy seized upon the other and ran away with it, saying that he could use it as a cradle, when he had children of his own. So the little girl went on with her little naked feet, which were quite red and blue with the cold. In an old apron she carried a number of matches, and had a bundle of them in her hands. No one had bought anything of her the whole day, nor had anyone given her even a penny. Shivering with cold and hunger, she crept along; poor little child, she looked the picture of misery. The snowflakes fell on her long, fair hair, which hung in curls on her shoulders, but she regarded them not.</p>
 <p><a href="#二级标题">标题跳转</a></p>
-<h3 id="往我这里跳"><a href="#往我这里跳" class="headerlink" title="往我这里跳"></a>往我这里跳</h3><p><a href="#往我这里跳">标题跳转</a></p>
+<h2 id="往我这里跳"><a href="#往我这里跳" class="headerlink" title="往我这里跳"></a>往我这里跳</h2><p>注释2<sup><a href="#fn_中文注释" id="reffn_中文注释">中文注释</a></sup></p>
+<p><a href="#六级标题">往我这跳之标题跳转</a></p>
+<pre class="mermaid">graph TD
+    A((Root))
+    A --> B((Left Child))
+    A --> C((Right Child))
+    B --> D((Left Grandchild))
+    B --> E((Right Grandchild))
+    C --> F((Left Grandchild))
+    C --> G((Right Grandchild))</pre>
+
+<pre class="mermaid">graph TD;
+
+A1-.-B1
+
+A2---B2
+
+A3===B3</pre>
+
+<pre class="mermaid">graph TB
+
+A1-.虚线文字.-B1
+
+A2-.虚线文字.->B2
+
+A3--实线文字---B3
+
+A4--实线文字-->B4
+
+A5==粗线文字===B5
+
+A6==粗线文字==>B6</pre>
+
+<p><a href="#往我这里跳">标题跳转</a></p>
+<pre class="mermaid">graph LR
+    %% flowchart改为graph也可以
+    %% 风格1，用红色填充，边框用蓝色，边框宽度两个像素
+    classDef mystyle1 fill:#f00, stroke:#00f, stroke-width:2px;
+    classDef mystyle2 fill:#0f0, stroke:#f00, stroke-width:4px;
+    classDef mystyle3 fill:#00f, stroke:#0f0, stroke-width:8px,color:#fff,stroke-dasharray: 6 3
+    classDef default fill:#f9f,stroke:#333,stroke-width:4px;
+    %% :::表示继承类（风格）
+    D[(默认风格)]
+    B(绿色填充<br>红边框<br>圆角):::mystyle2 --> D
+    C[蓝色填充<br>绿色边框<br>白色字体]:::mystyle3 --> D
+    %% D默认为default风格
+
+    e((显示特别<br>的符号)) -->|"f(,.?!+-\*ز)"| f(,.?!+-\*ز)
+
+    C --> b2
+    subgraph subgraph1
+        a1{"{菱形}"} --- a2[/"[/梯形\]"\]
+    end
+    subgraph subgraph2
+        b1[["[[xxx]]"]] -->|子图内部元<br>素的连接| b2(["([圆角])"])
+    end
+    %% graph图形是不能在子图之间进行连接，但是子图内部的元素还是可以
+    %% subgraph1 --> subgraph2
+    %% a1 -->|子图元素<br>之间的连接| b1</pre>
+
+<pre class="mermaid">graph TB
+    A --> B
+    subgraph 子图1 [TB方向]        
+        B --> C
+        C --> D
+    end
+    subgraph 子图2 [LR方向]
+
+        subgraph 子图21 21
+            D --> E
+            E --> F
+        end
+        subgraph 子图21 22
+            DD --> EE
+            EE --> FF
+        end
+    end
+    F --> G</pre>
+
 ]]></content>
       <categories>
         <category>测试</category>

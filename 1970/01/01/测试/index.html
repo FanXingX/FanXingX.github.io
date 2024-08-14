@@ -258,7 +258,7 @@
 <hr>
 <blockquote>
 <p>引用<br>换行</p>
-<p>分段</p>
+<p>分段<br>引用<br>换行</p>
 </blockquote>
 <div class="table-container">
 <table>
@@ -296,7 +296,85 @@
 \sum_{d|n} \varphi(d) &= n \\
 \end{aligned}</script><p>It was terribly cold and nearly dark on the last evening of the old year, and the snow was falling fast. In the cold and the darkness, a poor little girl, with bare head and naked feet, roamed through the streets. It is true she had on a pair of slippers when she left home, but they were not of much use. They were very large, so large, indeed, that they had belonged to her mother, and the poor little creature had lost them in running across the street to avoid two carriages that were rolling along at a terrible rate. One of the slippers she could not find, and a boy seized upon the other and ran away with it, saying that he could use it as a cradle, when he had children of his own. So the little girl went on with her little naked feet, which were quite red and blue with the cold. In an old apron she carried a number of matches, and had a bundle of them in her hands. No one had bought anything of her the whole day, nor had anyone given her even a penny. Shivering with cold and hunger, she crept along; poor little child, she looked the picture of misery. The snowflakes fell on her long, fair hair, which hung in curls on her shoulders, but she regarded them not.</p>
 <p><a href="#二级标题">标题跳转</a></p>
-<h3 id="往我这里跳"><a href="#往我这里跳" class="headerlink" title="往我这里跳"></a>往我这里跳</h3><p><a href="#往我这里跳">标题跳转</a></p>
+<h2 id="往我这里跳"><a href="#往我这里跳" class="headerlink" title="往我这里跳"></a>往我这里跳</h2><p>注释2<sup><a href="#fn_中文注释" id="reffn_中文注释">中文注释</a></sup></p>
+<p><a href="#六级标题">往我这跳之标题跳转</a></p>
+<pre class="mermaid">graph TD
+    A((Root))
+    A --> B((Left Child))
+    A --> C((Right Child))
+    B --> D((Left Grandchild))
+    B --> E((Right Grandchild))
+    C --> F((Left Grandchild))
+    C --> G((Right Grandchild))</pre>
+
+<pre class="mermaid">graph TD;
+
+A1-.-B1
+
+A2---B2
+
+A3===B3</pre>
+
+<pre class="mermaid">graph TB
+
+A1-.虚线文字.-B1
+
+A2-.虚线文字.->B2
+
+A3--实线文字---B3
+
+A4--实线文字-->B4
+
+A5==粗线文字===B5
+
+A6==粗线文字==>B6</pre>
+
+<p><a href="#往我这里跳">标题跳转</a></p>
+<pre class="mermaid">graph LR
+    %% flowchart改为graph也可以
+    %% 风格1，用红色填充，边框用蓝色，边框宽度两个像素
+    classDef mystyle1 fill:#f00, stroke:#00f, stroke-width:2px;
+    classDef mystyle2 fill:#0f0, stroke:#f00, stroke-width:4px;
+    classDef mystyle3 fill:#00f, stroke:#0f0, stroke-width:8px,color:#fff,stroke-dasharray: 6 3
+    classDef default fill:#f9f,stroke:#333,stroke-width:4px;
+    %% :::表示继承类（风格）
+    D[(默认风格)]
+    B(绿色填充<br>红边框<br>圆角):::mystyle2 --> D
+    C[蓝色填充<br>绿色边框<br>白色字体]:::mystyle3 --> D
+    %% D默认为default风格
+
+    e((显示特别<br>的符号)) -->|"f(,.?!+-\*ز)"| f(,.?!+-\*ز)
+
+    C --> b2
+    subgraph subgraph1
+        a1{"{菱形}"} --- a2[/"[/梯形\]"\]
+    end
+    subgraph subgraph2
+        b1[["[[xxx]]"]] -->|子图内部元<br>素的连接| b2(["([圆角])"])
+    end
+    %% graph图形是不能在子图之间进行连接，但是子图内部的元素还是可以
+    %% subgraph1 --> subgraph2
+    %% a1 -->|子图元素<br>之间的连接| b1</pre>
+
+<pre class="mermaid">graph TB
+    A --> B
+    subgraph 子图1 [TB方向]        
+        B --> C
+        C --> D
+    end
+    subgraph 子图2 [LR方向]
+
+        subgraph 子图21 21
+            D --> E
+            E --> F
+        end
+        subgraph 子图21 22
+            DD --> EE
+            EE --> FF
+        end
+    end
+    F --> G</pre>
+
 
     </div>
 
@@ -377,7 +455,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">二级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">三级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.1.</span> <span class="nav-text">四级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%94%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">五级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%85%AD%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">六级标题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%80%E6%88%91%E8%BF%99%E9%87%8C%E8%B7%B3"><span class="nav-number">1.2.</span> <span class="nav-text">往我这里跳</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">二级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">三级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.1.</span> <span class="nav-text">四级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%94%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">五级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%85%AD%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">六级标题</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%80%E6%88%91%E8%BF%99%E9%87%8C%E8%B7%B3"><span class="nav-number">2.</span> <span class="nav-text">往我这里跳</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -393,20 +471,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -491,6 +569,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   

@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="p3-数据的表示和运算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据的表示和运算的思维导图">
+<meta property="og:url" content="http://example.com/2024/08/10/Study/408-p3/index.html">
+<meta property="og:site_name" content="FXX&#39;s Blog">
+<meta property="og:description" content="p3-数据的表示和运算">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-10T13:36:09.884Z">
+<meta property="article:modified_time" content="2024-08-14T14:53:42.065Z">
+<meta property="article:author" content="繁星">
+<meta property="article:tag" content="408">
+<meta property="article:tag" content="计算机组成原理">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2024/08/10/Study/408-p3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数据的表示和运算的思维导图 | FXX's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">FXX's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">所处的电子世界，美丽而灿烂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/10/Study/408-p3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="繁星">
+      <meta itemprop="description" content="Coding...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FXX's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据的表示和运算的思维导图
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-08-10 21:36:09" itemprop="dateCreated datePublished" datetime="2024-08-10T21:36:09+08:00">2024-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-08-14 22:53:42" itemprop="dateModified" datetime="2024-08-14T22:53:42+08:00">2024-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/408/" itemprop="url" rel="index"><span itemprop="name">408</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">p3-数据的表示和运算</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据的表示和运算"><a href="#数据的表示和运算" class="headerlink" title="数据的表示和运算"></a>数据的表示和运算</h1><h2 id="常⻅考法"><a href="#常⻅考法" class="headerlink" title="常⻅考法"></a>常⻅考法</h2><pre class="mermaid"> graph LR
+            A[常⻅考法] --> B(C语⾔程序
+分析“数据的表示和运算”)
+            A --> C(结合机器级代码分析“数据的表示和运算”
+（通常也会给出对应的C语⾔程序）)
+
+            B --> D(【2020】43题)
+            B --> E(【2017】43题)
+            B --> ED(【2011】43题)
+            C --> F(【2021】43题)
+            C --> W(【2019】45题)
+            C --> G(【2017】44题)
+            C --> L(【2014】44题)
+            C --> S(【2013】44题)</pre>
+
+
+
+
+
+
+
+
+
+<h2 id="大题重点关注"><a href="#大题重点关注" class="headerlink" title="大题重点关注"></a>大题重点关注</h2><h3 id="数据的表示"><a href="#数据的表示" class="headerlink" title="数据的表示"></a>数据的表示</h3><ul>
+<li>无符号整数<ul>
+<li><code>unsigned short</code></li>
+<li><code>unsigned int</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>带符号</p>
+<ul>
+<li><code>short</code></li>
+<li><code>int</code></li>
+</ul>
+<blockquote>
+<p><strong>C语言常见整数类型</strong></p>
+<ol>
+<li>记住<ul>
+<li>$2 ^ {16} = 65535$ </li>
+<li>$2 ^ {15} = 32768$ </li>
+</ul>
+</li>
+<li>带符号 <code>short</code> <ul>
+<li>$-32768 \space \textasciitilde \space 32767$</li>
+</ul>
+</li>
+<li>无符号 <code>unsigned short</code> <ul>
+<li>$0\space \textasciitilde \space 65535$</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p><code>IEEE754</code>浮点数 </p>
+<ul>
+<li>结构: 符号位 + 阶码 + 尾数<ul>
+<li>[x] <code>float</code>: $1 + 8 + 23$</li>
+<li>[ ] <code>double</code>: $1 + 11 + 52$</li>
+<li>[ ] <code>long double</code>:  $1 + 15  + 64 $</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>C语言数据类型转换</p>
+<ul>
+<li><p>整数之间的转换</p>
+<ul>
+<li>[ ] 长度相同<ul>
+<li>机器数不变,解释方式改变(带符号整数,无符号整数)</li>
+</ul>
+</li>
+<li>[ ] 短变长<ul>
+<li>先扩展（⽆符号整数零扩展、带符号整数符号扩展），再解释</li>
+</ul>
+</li>
+<li>[ ] 长变短<ul>
+<li>先截断（留低位），再解释</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>整数和浮点数之间的转换</p>
+<ul>
+<li><p>[ ] 整数转浮点数</p>
+<ul>
+<li><p>写出⼈类视⻆的科学计数法 <code>1.xxxx</code>，再转为浮点数，截断尾部时采⽤ <code>0</code> 舍 <code>1</code> ⼊原则</p>
+</li>
+<li><p>[x] 注意：精度丢失问题</p>
+</li>
+</ul>
+</li>
+<li><p>[ ] 浮点数转整数</p>
+<ul>
+<li><p>写出⼆进制⼩数，去掉⼩数部分，整数部分保留</p>
+<p>更低的位数</p>
+</li>
+<li><p>[x] 注意：溢出问题、精度丢失（⼩数点后的部分）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="数据的运算"><a href="#数据的运算" class="headerlink" title="数据的运算"></a>数据的运算</h3><ul>
+<li><strong>加减法</strong><ul>
+<li>⽆符号整数<ul>
+<li>[ ] 加法规则<ul>
+<li>机算 —- 按位相加</li>
+<li>⼿算 —- 带⼊十进制计算</li>
+</ul>
+</li>
+<li>[ ] 减法规则<ul>
+<li>机算 —- 减数按位取反末位加1，减法变加法</li>
+<li>⼿算 —- 带⼊十进制计算</li>
+</ul>
+</li>
+<li>[x] 溢出问题<ul>
+<li>机算 —- <strong>:red_circle: 根据CF标志位判断，<code>CF</code>= <code>最⾼位产⽣的进位</code> 异或<code>sub</code></strong></li>
+<li>⼿算 —- 判断加减法的结果是否超出⽆符号数合法范围</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>带符号整数<ul>
+<li>[ ] 加法规则<ul>
+<li>机算 —- 按位相加</li>
+<li>⼿算 —- 带⼊十进制计算</li>
+</ul>
+</li>
+<li>[ ] 减法规则<ul>
+<li>机算 —- 减数按位取反末位加1，减法变加法</li>
+<li>⼿算 —- 带⼊十进制计算</li>
+</ul>
+</li>
+<li>[x] 溢出问题<ul>
+<li>机算 —- :red_circle:<strong>根据<code>OF</code>标志位判断，<code>OF</code> = <code>最⾼位产⽣的进位</code> 异或 <code>次⾼位产⽣的进位</code></strong></li>
+<li>⼿算 —- 判断加减法的结果是否超出带符号数合法范围</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IEEE754浮点数<ul>
+<li>⼩题考察居多（可通过王道书课后⼩题复习）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>乘法</strong></p>
+<ul>
+<li><p>无符号整数</p>
+<ul>
+<li><p>机算</p>
+<ul>
+<li><p>:flags:注意: 可用逻辑左移<code>&lt;&lt;</code>替代 <code>*2</code></p>
+</li>
+<li><p>:red_circle:溢出判断? </p>
+<ul>
+<li><p><code>n</code>位乘<code>n</code>位 若用<code>2n</code>位保存乘积,则不会溢出</p>
+</li>
+<li><p>n 位乘 <code>n</code> 位，⽤ <code>2n</code>位保存中间结果<br>最后截取末尾 <code>n</code> 位作为最终的乘积，可能会溢出</p>
+<blockquote>
+<ol>
+<li>⼿算判溢出<ul>
+<li>带⼊⼗进制计算乘法结果，判断该结果是否超出了 <code>n</code> 位“⽆符号数”所能表示的范围<br>若超出，则溢出</li>
+</ul>
+</li>
+<li>机器判溢出<ul>
+<li>两个⽆符号数乘法：<code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code> 位保存中间结果。<br>仅当前<code>n</code>位都是<code>0</code>时，不溢出</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>带符号整数</p>
+<ul>
+<li><p>机算</p>
+<ul>
+<li><p>:flags:注意: 可用逻辑左移<code>&lt;&lt;</code>替代 <code>*2</code></p>
+</li>
+<li><p>:red_circle:溢出判断? </p>
+<ul>
+<li><p><code>n</code>位乘<code>n</code>位 若用<code>2n</code>位保存乘积,则不会溢出</p>
+</li>
+<li><p><code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code>位保存中间结果<br>最后截取末尾 <code>n</code> 位作为最终的乘积，可能会溢出</p>
+<blockquote>
+<ol>
+<li>⼿算判溢出<ul>
+<li>带⼊⼗进制计算乘法结果，判断该结果是否超出了 <code>n</code> 位“⽆符号数”所能表示的范围<br>若超出，则溢出</li>
+</ul>
+</li>
+<li>机器判溢出<ul>
+<li>两个有符号补码乘法：<code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code> 位保存中间结果。<pre><code>    仅当前 `n+1` 位全`1`或全`0`时，不溢出
+</code></pre></li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>除法</strong></p>
+<ul>
+<li>⽆符号整数 <ul>
+<li>机算 <ul>
+<li>:flags:注意: 可用逻辑右移<code>&gt;&gt;</code>替代 <code>÷2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>⽆符号整数 <ul>
+<li>机算<ul>
+<li>:flags:注意: 可用逻辑右移<code>&gt;&gt;</code>替代 <code>÷2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="常见的难点"><a href="#常见的难点" class="headerlink" title="常见的难点"></a>常见的难点</h2><ol>
+<li>无符号数的加法, 减法怎么算?<ul>
+<li>在硬件看来，对⽆符号数的加减法、对有符号补码的加减法都是⼀样的计算⽅法</li>
+<li>加法：直接 <code>N bit</code>⼆进制按位相加</li>
+<li>减法：计算 “<code>A - B</code>”，可转化为等价的加法——将 <code>B</code> 的 <code>N bit</code> 全部按位取反末位<code>+1</code>，然后与<code>A</code>相加</li>
+</ul>
+</li>
+<li>遇到乘法怎么算?<ul>
+<li>通常可带⼊⼗进制⼿算</li>
+<li>408⼤纲不要求掌握浮点数乘法</li>
+</ul>
+</li>
+<li>遇到除法怎么算?<ul>
+<li>通常可带⼊⼗进制⼿算</li>
+<li>408⼤纲不要求掌握浮点数除法</li>
+</ul>
+</li>
+<li><p>溢出怎么判断?</p>
+<ul>
+<li><p>加法/减法</p>
+<ul>
+<li>手算判溢出<ul>
+<li>带⼊⼗进制计算结果，判断该结果是否超出了 <code>n位</code>所能表示的范围，若超出，则溢出</li>
+</ul>
+</li>
+<li><p>机器判溢出</p>
+<ul>
+<li>⽆符号数加/减：运算后若 <code>CF=1</code>，则溢出；若<code>CF=0</code>，则不溢出</li>
+<li>有符号数补码加/减：运算后若 <code>OF=1</code>，则溢出；若<code>OF=0</code>，则不溢出</li>
+</ul>
+</li>
+<li><p>乘法</p>
+<ul>
+<li><p><code>n</code>位乘<code>n</code>位 若用<code>2n</code>位保存乘积,则不会溢出</p>
+</li>
+<li><p><code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code>位保存中间结果<br>最后截取末尾 <code>n</code> 位作为最终的乘积，可能会溢出</p>
+<blockquote>
+<ol>
+<li>⼿算判溢出<ul>
+<li>带⼊⼗进制计算乘法结果，判断该结果是否超出了 <code>n</code> 位“⽆符号数”所能表示的范围<br>若超出，则溢出</li>
+</ul>
+</li>
+<li><p>机器判溢出</p>
+<ul>
+<li>两个⽆符号数乘法：<code>n</code> 位乘 <code>n</code> 位，⽤ <code>2n</code> 位保存中间结果。<br>仅当前<code>n</code>位都是<code>0</code>时，不溢出</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<pre><code> - 两个有符号补码乘法：`n` 位乘 `n` 位，⽤ `2n` 位保存中间结果。
+     仅当前 `n+1` 位全`1`或全`0`时，不溢出
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 除法
+  - 可能溢出，但是，整数的除法不可能溢出，只有⼩数的除法可能溢出
+    ⽽408不要求掌握浮点数除法，因此不需太关注除法的溢出问题
+</code></pre><ol>
+<li><p>精度丢失怎么判断</p>
+<ul>
+<li><p>浮点数的精度：看尾数的位数</p>
+<ol>
+<li><p>单精度浮点型 <code>float</code>：尾数位数为 <code>23</code>+<code>1 bit</code>。因此</p>
+<p>数值部分可以表示 <code>24bit</code>的精度</p>
+</li>
+<li><p>双精度浮点型 <code>double</code>：尾数位数为 <code>52</code>+<code>1 bit</code>。</p>
+<p>因此数值部分可表示 <code>53bit</code>的精度</p>
+</li>
+<li><p>临时浮点数<code>long double</code>：尾数位数为 <code>64</code>+<code>1</code></p>
+<p>bit。因此数值部分可表示 <code>65bit</code>的精度</p>
+</li>
+<li><p>注：<code>IEEE 754</code>标准中，尾数是规格化的，隐含了⼀个最⾼位的 <code>1</code></p>
+</li>
+</ol>
+</li>
+<li><p>定点整数的精度：看数值位的位数</p>
+<ol>
+<li><p>16位<code>short</code>型：数值部分的精度为<code>15 bit</code></p>
+</li>
+<li><p>32位<code>int</code>型：数值部分的精度为 <code>31 bit</code></p>
+</li>
+<li><p>32位<code>unsigned int</code> 型：数值部分的精度为 <code>32 bit</code></p>
+</li>
+<li><p>64位<code>long</code>型：数值部分的精度为<code>63 bit</code></p>
+<blockquote>
+<ul>
+<li><p><strong>整数转浮点数：数值部分精度更⾼的类型，转为数值部分精度更低的类型，就有可能发⽣精度丢失</strong></p>
+</li>
+<li><p><strong>浮点数转整数：如果有浮点数有⼩数部分，则可能丢失精度</strong></p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><code>CF</code>、<code>ZF</code>、<code>OF</code>、<code>SF</code> 傻傻分不清楚？</p>
+<blockquote>
+<ul>
+<li><p><code>CF</code></p>
+<ul>
+<li><p>含义：进位/借位标志，表示⽆符号数的加减法是否发⽣了进位或借位。</p>
+<p>当<code>CF=1</code>时，说明⽆符号数的加减运算发⽣了进位或借位，也即发⽣了溢出</p>
+</li>
+<li><p>硬件的计算⽅法：<code>CF</code> =<code>最⾼位产⽣的进位</code>⊕<code>sub</code></p>
+<ul>
+<li><code>sub = 1</code>表示减法</li>
+<li><code>sub = 0</code>表示加分</li>
+</ul>
+</li>
+<li><p>注意:  <code>CF</code>位对有符号数的加减法无意义</p>
+</li>
+</ul>
+</li>
+<li><p><code>ZF</code></p>
+<ul>
+<li>含义: 表示运算结果是否为0 <code>ZF=1</code>表示运算结果为<code>0</code>，<code>ZF=0</code>表示运算结果⾮<code>0</code></li>
+<li>硬件的计算⽅法：两个数的运算结果为<code>n bit</code>，只有<code>n bit</code>全为<code>0</code>时，<code>ZF =1</code></li>
+</ul>
+</li>
+<li><p><code>OF</code></p>
+<ul>
+<li>含义：有符号数的加减运算是否发⽣了溢出。<code>OF=1</code>时，说明发⽣了溢出</li>
+<li>硬件的计算⽅法：<code>OF</code>=<code>最⾼位产⽣的进位</code>⊕ <code>次⾼位产⽣的进位</code></li>
+<li>注意：<code>OF</code>位对⽆符号数的加减法⽆意义</li>
+</ul>
+</li>
+<li><p><code>SF</code></p>
+<ul>
+<li>含义：有符号数加减运算结果的正负性，<code>SF=0</code>表示运算结果为正数，<code>SF=1</code>表示运算结果为负数</li>
+<li>硬件的计算⽅法：<code>SF =</code> 最⾼位的本位和</li>
+<li>注意：<code>SF</code>位对⽆符号数的加减法⽆意义</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h2 id="大纲要求"><a href="#大纲要求" class="headerlink" title="大纲要求"></a>大纲要求</h2><ul>
+<li><p>（⼀）数制与编码</p>
+<ol>
+<li><p><strong>进位计数制及其相互转换</strong></p>
+<ul>
+<li>二进制</li>
+<li>八进制</li>
+<li>十进制</li>
+<li>十六进制</li>
+</ul>
+<blockquote>
+<ul>
+<li>相互转换<ul>
+<li>⼆、⼋、⼗六 之间的转换很简单</li>
+<li>⼆转⼗  <ul>
+<li>根据每位权值展开即可</li>
+</ul>
+</li>
+<li>⼗转⼆<ul>
+<li>好拼凑的<ul>
+<li>拼凑法（熟悉每个⼆进制位的权重）</li>
+</ul>
+</li>
+<li>不好平凑的<ul>
+<li>整数部分：除2留余数，先留是低位后留是⾼位</li>
+<li>⼩数部分：乘2取整，先取是⾼位后取是低位</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li><p><strong>定点数的编码表示</strong></p>
+<ul>
+<li><p>:flags:无符号数的表示</p>
+<ul>
+<li>重点关注⽆符号数的“减法”如何实现，以及⽆符号数加法/减法的溢出判断</li>
+</ul>
+</li>
+<li><p>带符号整数的表示</p>
+<ul>
+<li>[ ] 原</li>
+<li>[ ] 反</li>
+<li>[x] 补<ul>
+<li>重点关注补码的“减法”如何实现，以及补码加法/减法的溢出判断</li>
+</ul>
+</li>
+<li>[ ] 移<ul>
+<li>注意偏移量是多少</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>把符号位和数值位⼀起编码的⽅法</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ul>
+<li><p>（⼆） 运算⽅法和运算电路</p>
+<ol>
+<li><p>基本运算部件</p>
+<ul>
+<li><p>加法器</p>
+</li>
+<li><p>算数逻辑部件（<code>ALU</code>）</p>
+</li>
+</ul>
+</li>
+<li><p>加/减运算</p>
+<ul>
+<li>补码加/减运算器</li>
+<li>标志位的⽣成<ul>
+<li><code>CF</code>、<code>SF</code>、<code>ZF</code>、<code>OF</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>乘/除运算</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>（三）整数的表示和运算<ol>
+<li>⽆符号整数的表示和运算<ul>
+<li>表示</li>
+<li>运算<ul>
+<li>加、减、乘、除</li>
+<li>溢出判断</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>带符号整数的表示和运算<ul>
+<li>表示<ul>
+<li>原、反、补、移</li>
+</ul>
+</li>
+<li>运算（仅关注补码即可）<ul>
+<li>加、减、乘、除</li>
+<li>溢出判断</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>（四）整浮点数的表示和运算</p>
+<ol>
+<li><p>浮点数的表示： <code>IEEE754</code> 标准</p>
+<ul>
+<li>结构：符号位+阶码+尾数<ul>
+<li><code>float</code>：<code>1+8+23</code></li>
+<li><code>double</code>：<code>1+11+52</code></li>
+<li><code>long double</code>：<code>1+15+64</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>浮点数的加/减运算</p>
+<ul>
+<li><p>对阶：⼩阶向⼤阶对⻬</p>
+</li>
+<li><p>尾数加减：原码定点数的加减法</p>
+<ul>
+<li><p>规格化：尾数规格化为 <code>1.xxxxx</code>的形式</p>
+<ul>
+<li><p>尾数每左规⼀位，阶码 <code>- 1</code></p>
+</li>
+<li><p>尾数每右规⼀位，阶码 <code>+ 1</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>舍⼊：尾数右规时，可能导致精度丢失，需考虑舍⼊问题</p>
+</li>
+<li><p>判溢出</p>
+<ul>
+<li><p>尾数右规时，阶码超出可表示的最⼤值，上溢 </p>
+<ul>
+<li>[x] 发⽣溢出异常</li>
+</ul>
+</li>
+<li><p>尾数左规时，阶码低于可表示的最⼩值，下溢 </p>
+<ul>
+<li>[x] 当做机器0处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/408/" rel="tag"># 408</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"># 计算机组成原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/08/10/Study/408-p5/" rel="prev" title="一条指令的硬件实现的思维导图">
+      <i class="fa fa-chevron-left"></i> 一条指令的硬件实现的思维导图
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">数据的表示和运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E2%BB%85%E8%80%83%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">常⻅考法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E9%A2%98%E9%87%8D%E7%82%B9%E5%85%B3%E6%B3%A8"><span class="nav-number">1.2.</span> <span class="nav-text">大题重点关注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据的运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9A%BE%E7%82%B9"><span class="nav-number">1.3.</span> <span class="nav-text">常见的难点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E7%BA%B2%E8%A6%81%E6%B1%82"><span class="nav-number">1.4.</span> <span class="nav-text">大纲要求</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="繁星"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">繁星</p>
+  <div class="site-description" itemprop="description">Coding...</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">繁星</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
